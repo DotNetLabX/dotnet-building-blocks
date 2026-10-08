@@ -4,6 +4,19 @@ The one home of the generic .NET building blocks: small libraries named `Blocks.
 concern, with no product knowledge. Apps do not reference them as packages. A sync tool in this repo copies whole
 blocks into an app, and copies an app's edits back here.
 
+## Why this repo exists
+
+These blocks grew up inside several apps. Each app kept its own copy, the copies drifted apart, and a fix made in one
+app never reached the others. This repo is their one home.
+
+- **Version one** starts from the reference copy (the blocks of an earlier reference app), moves it to .NET 10,
+  removes the product-specific wording, applies the naming and comment conventions, and fixes the known bugs. Every
+  public name that differs from the reference is listed in `docs/public-names.md`, with its reason.
+- **Copied, not packaged.** Apps take whole blocks as source, with the sync tool below. An app can fix a block in
+  place and send the fix back here, so every other app gets it the next time it takes the block forward.
+- **Next.** A reviewed path for changes coming back from apps is planned (`docs/backlog.md`); version one is a plain
+  two-way copy.
+
 ## Blocks
 
 | Block | What it is for |
