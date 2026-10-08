@@ -55,3 +55,11 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Claude Code session state
+.claude/.current-agent
+.claude/audit/
+.claude/.pipeline-state
+
+# Foreign-repo records (list file names from private repos)
+docs/specs/F1-VersionOne/delivery/foreign-repos-*.txt

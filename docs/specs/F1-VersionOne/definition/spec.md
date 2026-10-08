@@ -3,7 +3,7 @@
 **Traces to:** none (new repo, no product doc) — source is the hand-off `D:\src\knowledge-gateway\docs\specs\F194-ReferenceFoundations\delivery\handoff-blocks-repo.md` and the owner's rulings of 2026-10-08 in this session
 **Source:** Scratch (technical feature; architect-authored tech-spec)
 **Dependencies:** None
-**Status:** Ready
+**Status:** Done (2026-10-08)
 **Model:** claude-opus-5-5
 **Plan:** `docs/specs/F1-VersionOne/delivery/plan.md`
 Rule list: not landed — the owner chose to skip the rule list for this release (2026-10-08)
@@ -46,13 +46,14 @@ Each block, compared with the reference:
    reference's shapes or behaviour.
 
 **Departures from the reference (owner, 2026-10-08).** The three copies conflict in 20 places
-(`docs/specs/F1-VersionOne/definition/conflicts.drawio`). 16 keep the reference's shape. 4 change:
+(`docs/specs/F1-VersionOne/definition/conflicts.drawio`). 17 keep the reference's shape. 3 change (D1, D2, D4); D3
+was re-ruled to the reference's shape on 2026-10-08 and stays in the table as the record:
 
 | # | Area | Change | Why |
 |---|---|---|---|
-| D1 | Error mapper | Adds forbidden 403, already exists 409 and bad gateway 502. Any other HTTP error uses its own status instead of becoming 500. Outside development a 500 carries the fixed text "An unexpected error occurred." and never the internal message; in development it also carries the error's details. Reply names in camelCase. The block's own "ensure not exists" repository helper throws the already-exists error, so it answers 409. A cancelled request answers 499 when the response has not started — also when the cancellation is the inner cause of another error; once the response has started, the status is left as it is. | the owner's 409 ruling; a 500 leaked internals; a new error type fell to 500; a cancelled request was logged as a server failure |
+| D1 | Error mapper | Adds forbidden 403, already exists 409 and bad gateway 502. Any other HTTP error uses its own status instead of becoming 500. Outside development a 500 carries the fixed text "An unexpected error occurred." and never the internal message; in development it also carries the error's details. Reply names in camelCase. The block's own "ensure not exists" repository helper throws the already-exists error, so it answers 409. A cancelled request — the client's request was aborted — answers 499 when the response has not started, also when the cancellation is the inner cause of another error; once the response has started, the status is left as it is. A cancellation without a client abort (such as an upstream timeout) is not a 499: it takes the normal mapping, so a wrapping HTTP error gives its own status and a bare cancellation a logged 500 (owner, 2026-10-08, `delivery/questions.md` Q5). | the owner's 409 ruling; a 500 leaked internals; a new error type fell to 500; a cancelled request was logged as a server failure |
 | D2 | Table set-up | The created-on default that works only on SQL Server is removed, with the overridable member that held it. The two seeding helpers that run SQL Server-only statements (the manual-id insert scope and the table reseed) stay, and the block's read-me says they need SQL Server (owner, 2026-10-08) | a block must work with any database its technology supports; the two helpers are opt-in |
-| D3 | Repository upsert | Copies the tracked values, so properties stored in private fields are saved on update | bug, fixed in sprint-rituals |
+| D3 | Repository upsert | **Keeps the reference's update** (`SetValues(entity)`): it saves properties stored in private fields and keeps the values of properties with no code property (shadow properties, such as a foreign key with no property). Sprint-rituals' line is not taken (owner, 2026-10-08, re-ruled) | first ruled as a bug fixed in sprint-rituals; on EF Core 10.0.12 the reference's line already saves private-field values, and sprint-rituals' line set shadow values to null (architect probe, `delivery/questions.md` Q4) |
 | D4 | FastEndpoints event publisher | Publishes by the event's real type | sprint-rituals found that, on FastEndpoints 8.x, no specific handler ran; the reference makes the same call and version one moves to 8.x, so a test proves the fix there |
 
 **Additions and fixes found while reading the reference:**
@@ -148,13 +149,15 @@ Flow 3: Status
 - [ ] No block contains `//insight`, `//talk` or `//todo` markers, or a commented-out line of code.
 - [ ] MediatR resolves to 12.5.0; MassTransit to an 8.x release.
 - [ ] Error mapper tests: each error type gives its status (400, 401, 403, 404, 409, 499, 500, 502); an unlisted
-      HTTP error gives its own status; a cancellation wrapped in another error gives 499; a cancellation after
-      the response started leaves the status unchanged; a 500 outside development carries the fixed text and no
+      HTTP error gives its own status; with the client's request aborted, a cancellation, bare or wrapped in
+      another error, gives 499; without an abort, a cancellation wrapped in a bad-gateway error gives 502 and a
+      bare one gives 500; a cancellation after the response started leaves the status unchanged; a 500 outside development carries the fixed text and no
       internal message; reply names are camelCase; the "ensure not exists" helper's error gives 409.
 - [ ] A FastEndpoints test on the version this repo uses shows a handler for a specific event runs when the event
       is published through the block.
 - [ ] A repository test updates an existing entity whose property is stored in a private field, through upsert,
-      and reads the new value back from a fresh context.
+      and reads the new value back from a fresh context; another shows an upsert keeps the values of properties
+      with no code property (a shadow foreign key and a shadow column).
 - [ ] A repository test deletes an entity by id.
 - [ ] A claims test asks the HTTP-context claims provider for two different claim types and gets each one's
       values.
@@ -205,10 +208,13 @@ missed, under the same two rules.
 
 ## Answers for knowledge-gateway
 
-- **Conflicts (hand-off question 2):** the reference's shape for 16; D1–D4 above (owner, 2026-10-08). The hand-off
+- **Conflicts (hand-off question 2):** the reference's shape for 17, D3 included after its re-ruling; D1, D2 and D4
+  change (owner, 2026-10-08). The hand-off
   says 12 conflicts; the comparison lists 20, and all 20 were ruled.
-- **sprint-rituals improvements (question 3):** in version one — the upsert fix (D3), the publisher fix (D4), the
-  403/409/502 errors and the mapper changes (D1, A1). In version two — the SQLite data-folder helper.
+- **sprint-rituals improvements (question 3):** in version one — the publisher fix (D4), the
+  403/409/502 errors and the mapper changes (D1, A1). Not taken — the upsert line (D3): on EF Core 10 the reference's
+  line is correct and sprint-rituals' line erases shadow-property values (owner, 2026-10-08). In version two — the
+  SQLite data-folder helper.
 - **Blocks only knowledge-gateway has (question 6):** generic enough to move here — Authentication, Mcp.OAuth,
   security headers, readiness checks (Azure wording removed), the Azure Front Door origin check (named for Front
   Door), Git, Npgsql, Sql, the command-line argument reader. Rate limiting needs extracting from the store

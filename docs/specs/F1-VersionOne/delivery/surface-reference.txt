@@ -1,0 +1,684 @@
+Blocks.AspNetCore | Blocks.AspNetCore | AssignUserIdFilter | ctor public AssignUserIdFilter(Blocks.Core.Security.IClaimsProvider _claimsProvider)
+Blocks.AspNetCore | Blocks.AspNetCore | AssignUserIdFilter | method public System.Threading.Tasks.ValueTask<object?> InvokeAsync(Microsoft.AspNetCore.Http.EndpointFilterInvocationContext ctx, Microsoft.AspNetCore.Http.EndpointFilterDelegate next)
+Blocks.AspNetCore | Blocks.AspNetCore | AssignUserIdFilter | type public sealed class AssignUserIdFilter : Microsoft.AspNetCore.Http.IEndpointFilter
+Blocks.AspNetCore | Blocks.AspNetCore | Extensions | method public static string GetClientIpAddress(this Microsoft.AspNetCore.Http.HttpContext context)
+Blocks.AspNetCore | Blocks.AspNetCore | Extensions | method public static string? BaseUrl(this Microsoft.AspNetCore.Http.HttpRequest req)
+Blocks.AspNetCore | Blocks.AspNetCore | Extensions | type public static class Extensions
+Blocks.AspNetCore | Blocks.AspNetCore | FormFileExtensions | field public const string DefaultFileContentType = "application/octet-stream"
+Blocks.AspNetCore | Blocks.AspNetCore | FormFileExtensions | method public static string GetContentType(this Microsoft.AspNetCore.Http.IFormFile file, bool preferHeader = true, string fallback = "application/octet-stream")
+Blocks.AspNetCore | Blocks.AspNetCore | FormFileExtensions | type public static class FormFileExtensions
+Blocks.AspNetCore | Blocks.AspNetCore | GlobalExceptionMiddleware | ctor public GlobalExceptionMiddleware(Microsoft.AspNetCore.Http.RequestDelegate _next, Microsoft.Extensions.Logging.ILogger<Blocks.AspNetCore.GlobalExceptionMiddleware> _logger, Microsoft.AspNetCore.Hosting.IWebHostEnvironment _env)
+Blocks.AspNetCore | Blocks.AspNetCore | GlobalExceptionMiddleware | method public System.Threading.Tasks.Task InvokeAsync(Microsoft.AspNetCore.Http.HttpContext context)
+Blocks.AspNetCore | Blocks.AspNetCore | GlobalExceptionMiddleware | type public sealed class GlobalExceptionMiddleware
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextExtensions | method public static System.Collections.Generic.IEnumerable<string> GetClaimValues(this Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor, string claimType)
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextExtensions | method public static string? GetClaimValue(this Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor, string claimType)
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextExtensions | method public static string? GetRouteValue(this Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor, string key)
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextExtensions | type public static class HttpContextExtensions
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | ctor public HttpContextProvider(Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContextAccessor)
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public System.Collections.Generic.IEnumerable<string> GetClaimValues(string claimName)
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public System.Collections.Generic.IReadOnlySet<TEnum> GetUserRoles<TEnum>() where TEnum : struct, System.Enum
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public System.Collections.Generic.IReadOnlySet<string> GetUserRoles()
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public int GetUserId()
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public int? GetArticleId()
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public int? TryGetUserId()
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public string GetClaimValue(string claimName)
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public string GetRouteValue(string key)
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public string GetUserEmail()
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public string GetUserName()
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | method public string? TryGetClaimValue(string claimName)
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | property public Microsoft.AspNetCore.Http.HttpContext HttpContext { get; }
+Blocks.AspNetCore | Blocks.AspNetCore | HttpContextProvider | type public class HttpContextProvider : Blocks.AspNetCore.IRouteProvider, Blocks.Core.Security.IClaimsProvider
+Blocks.AspNetCore | Blocks.AspNetCore | IRouteProvider | method public abstract int? GetArticleId()
+Blocks.AspNetCore | Blocks.AspNetCore | IRouteProvider | method public abstract string GetRouteValue(string key)
+Blocks.AspNetCore | Blocks.AspNetCore | IRouteProvider | type public interface IRouteProvider
+Blocks.AspNetCore | Blocks.AspNetCore | IUserClaimsProvider | property public abstract string UserRole { get; }
+Blocks.AspNetCore | Blocks.AspNetCore | IUserClaimsProvider | type public interface IUserClaimsProvider
+Blocks.AspNetCore | Blocks.AspNetCore | QueryStringConstants | field public const string RoleHeaderQueryString = "role"
+Blocks.AspNetCore | Blocks.AspNetCore | QueryStringConstants | field public const string UserIdQueryString = "userid"
+Blocks.AspNetCore | Blocks.AspNetCore | QueryStringConstants | type public static class QueryStringConstants
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcClientRegistrationExtensions | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddCodeFirstGrpcClient<TClient>(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, Blocks.AspNetCore.Grpc.GrpcServicesOptions grpcOptions, string? serviceKey = null) where TClient : class
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcClientRegistrationExtensions | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddCodeFirstGrpcClientAsSingleton<TClient>(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, Blocks.AspNetCore.Grpc.GrpcServicesOptions grpcOptions, string? serviceKey = null) where TClient : class
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcClientRegistrationExtensions | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddCodeFirstGrpcClientWithRetry<TClient>(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, Blocks.AspNetCore.Grpc.GrpcServicesOptions grpcOptions, string? serviceKey = null) where TClient : class
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcClientRegistrationExtensions | type public static class GrpcClientRegistrationExtensions
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcRetrySettings | ctor public GrpcRetrySettings()
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcRetrySettings | property public int Count { get; init; }
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcRetrySettings | property public int InitialDelayMs { get; init; }
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcRetrySettings | type public class GrpcRetrySettings
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcServiceSettings | ctor public GrpcServiceSettings()
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcServiceSettings | property public bool EnableRetry { get; init; }
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcServiceSettings | property public string Url { get; init; }
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcServiceSettings | type public class GrpcServiceSettings
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcServicesOptions | ctor public GrpcServicesOptions()
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcServicesOptions | property public Blocks.AspNetCore.Grpc.GrpcRetrySettings Retry { get; init; }
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcServicesOptions | property public System.Collections.Generic.Dictionary<string, Blocks.AspNetCore.Grpc.GrpcServiceSettings> Services { get; init; }
+Blocks.AspNetCore | Blocks.AspNetCore.Grpc | GrpcServicesOptions | type public class GrpcServicesOptions
+Blocks.AspNetCore | Blocks.AspNetCore.Middleware | RequestDiagnosticsMiddleware | ctor public RequestDiagnosticsMiddleware(Microsoft.AspNetCore.Http.RequestDelegate _next, Microsoft.Extensions.Logging.ILogger<Blocks.AspNetCore.Middleware.RequestDiagnosticsMiddleware> _logger, Microsoft.AspNetCore.Hosting.IWebHostEnvironment _env)
+Blocks.AspNetCore | Blocks.AspNetCore.Middleware | RequestDiagnosticsMiddleware | method public System.Threading.Tasks.Task InvokeAsync(Microsoft.AspNetCore.Http.HttpContext ctx, Blocks.Core.Context.RequestContext requestContext)
+Blocks.AspNetCore | Blocks.AspNetCore.Middleware | RequestDiagnosticsMiddleware | type public sealed class RequestDiagnosticsMiddleware
+Blocks.AspNetCore | Blocks.AspNetCore.Middlewares | RequestContextMiddleware | ctor public RequestContextMiddleware(Microsoft.AspNetCore.Http.RequestDelegate _next, Microsoft.Extensions.Logging.ILogger<Blocks.AspNetCore.Middlewares.RequestContextMiddleware> _log)
+Blocks.AspNetCore | Blocks.AspNetCore.Middlewares | RequestContextMiddleware | method public System.Threading.Tasks.Task InvokeAsync(Microsoft.AspNetCore.Http.HttpContext httpContext, Blocks.Core.Context.RequestContext requestContext)
+Blocks.AspNetCore | Blocks.AspNetCore.Middlewares | RequestContextMiddleware | type public sealed class RequestContextMiddleware
+Blocks.AspNetCore | Blocks.AspNetCore.ModelBinding | GenericModelBinder<T> | ctor public GenericModelBinder()
+Blocks.AspNetCore | Blocks.AspNetCore.ModelBinding | GenericModelBinder<T> | method public System.Threading.Tasks.Task BindModelAsync(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext bindingContext)
+Blocks.AspNetCore | Blocks.AspNetCore.ModelBinding | GenericModelBinder<T> | type public class GenericModelBinder<T> : Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder where T : class, new()
+Blocks.AspNetCore | Blocks.AspNetCore.ModelBinding | GenericModelBinderProvider | ctor public GenericModelBinderProvider()
+Blocks.AspNetCore | Blocks.AspNetCore.ModelBinding | GenericModelBinderProvider | method public Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder? GetBinder(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext context)
+Blocks.AspNetCore | Blocks.AspNetCore.ModelBinding | GenericModelBinderProvider | type public class GenericModelBinderProvider : Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider
+Blocks.Core | Blocks.Core | AsyncLock | ctor public AsyncLock()
+Blocks.Core | Blocks.Core | AsyncLock | method public Blocks.Core.AsyncLock Lock()
+Blocks.Core | Blocks.Core | AsyncLock | method public System.Threading.Tasks.Task<Blocks.Core.AsyncLock> LockAsync()
+Blocks.Core | Blocks.Core | AsyncLock | method public void Dispose()
+Blocks.Core | Blocks.Core | AsyncLock | type public class AsyncLock : System.IDisposable
+Blocks.Core | Blocks.Core | ConfigurationExtensions | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddAndValidateOptions<TOptions>(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration) where TOptions : class
+Blocks.Core | Blocks.Core | ConfigurationExtensions | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection ConfigureOptionsFromSection<TOptions>(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration) where TOptions : class
+Blocks.Core | Blocks.Core | ConfigurationExtensions | method public static T GetSectionByTypeName<T>(this Microsoft.Extensions.Configuration.IConfiguration configuration)
+Blocks.Core | Blocks.Core | ConfigurationExtensions | method public static string GetConnectionStringOrThrow(this Microsoft.Extensions.Configuration.IConfiguration configuration, string name)
+Blocks.Core | Blocks.Core | ConfigurationExtensions | type public static class ConfigurationExtensions
+Blocks.Core | Blocks.Core | DateTimeExtensions | method public static long ToUnixEpochDate(this System.DateTime date)
+Blocks.Core | Blocks.Core | DateTimeExtensions | type public static class DateTimeExtensions
+Blocks.Core | Blocks.Core | EnumExtensions | method public static System.Collections.Generic.IEnumerable<TEnum> GetValues<TEnum>() where TEnum : struct, System.Enum
+Blocks.Core | Blocks.Core | EnumExtensions | method public static string ToDescription(this System.Enum value)
+Blocks.Core | Blocks.Core | EnumExtensions | type public static class EnumExtensions
+Blocks.Core | Blocks.Core | EnumerableExtensions | method public static bool HasAny<TSource>(this System.Collections.Generic.IEnumerable<TSource> this)
+Blocks.Core | Blocks.Core | EnumerableExtensions | method public static bool HasMany<T>(this System.Collections.Generic.IEnumerable<T> this)
+Blocks.Core | Blocks.Core | EnumerableExtensions | method public static bool In<T>(this T o, params T[] values)
+Blocks.Core | Blocks.Core | EnumerableExtensions | method public static bool IsEmpty<T>(this System.Collections.Generic.IEnumerable<T> enumerable)
+Blocks.Core | Blocks.Core | EnumerableExtensions | method public static bool IsNotNullOrEmpty<T>(this System.Collections.Generic.IEnumerable<T>? enumerable)
+Blocks.Core | Blocks.Core | EnumerableExtensions | method public static bool IsNullOrEmpty<T>(this System.Collections.Generic.Dictionary<T, T>? dict) where T : notnull
+Blocks.Core | Blocks.Core | EnumerableExtensions | method public static bool IsNullOrEmpty<T>(this System.Collections.Generic.IEnumerable<T>? enumerable)
+Blocks.Core | Blocks.Core | EnumerableExtensions | method public static string ToString<T>(this System.Collections.Generic.IEnumerable<T> this, string separator)
+Blocks.Core | Blocks.Core | EnumerableExtensions | method public static string ToString<T>(this System.Collections.Generic.IEnumerable<T> this, string separator, string lastSeparator)
+Blocks.Core | Blocks.Core | EnumerableExtensions | type public static class EnumerableExtensions
+Blocks.Core | Blocks.Core | Guard | method public static T AgainstNull<T>(T? value, string parameterName)
+Blocks.Core | Blocks.Core | Guard | method public static T NotFound<T>(T? value) where T : class
+Blocks.Core | Blocks.Core | Guard | method public static void ThrowIfFalse(this bool condition, string message = "Condition must be true.")
+Blocks.Core | Blocks.Core | Guard | method public static void ThrowIfNotEqual<T>(T value, T other) where T : System.IEquatable<T>
+Blocks.Core | Blocks.Core | Guard | method public static void ThrowIfNull<T>(T? value, string name)
+Blocks.Core | Blocks.Core | Guard | method public static void ThrowIfNullOrWhiteSpace(string value)
+Blocks.Core | Blocks.Core | Guard | type public static class Guard
+Blocks.Core | Blocks.Core | GuardExtensions | method public static T OrThrowNotFound<T>(this T? value, string? message = null) where T : class
+Blocks.Core | Blocks.Core | GuardExtensions | type public static class GuardExtensions
+Blocks.Core | Blocks.Core | IThreadSafeMemoryCache | method public abstract System.Threading.Tasks.Task<T> GetOrCreateAsync<T>(string cacheKey, System.Func<Microsoft.Extensions.Caching.Memory.ICacheEntry, System.Threading.Tasks.Task<T>> factory)
+Blocks.Core | Blocks.Core | IThreadSafeMemoryCache | method public abstract T GetOrCreate<T>(string cacheKey, System.Func<Microsoft.Extensions.Caching.Memory.ICacheEntry, T> factory)
+Blocks.Core | Blocks.Core | IThreadSafeMemoryCache | method public abstract T Set<T>(string cacheKey, T value)
+Blocks.Core | Blocks.Core | IThreadSafeMemoryCache | method public abstract bool TryGet<T>(string cacheKey, out T value)
+Blocks.Core | Blocks.Core | IThreadSafeMemoryCache | method public abstract void Remove(string cacheKey)
+Blocks.Core | Blocks.Core | IThreadSafeMemoryCache | type public interface IThreadSafeMemoryCache
+Blocks.Core | Blocks.Core | JsonExtensions | field public static readonly System.Text.Json.JsonSerializerOptions DefaultOptions
+Blocks.Core | Blocks.Core | JsonExtensions | method public static T DeserializeCaseInsensitive<T>(string json)
+Blocks.Core | Blocks.Core | JsonExtensions | type public static class JsonExtensions
+Blocks.Core | Blocks.Core | MaxLength | field public const int C0 = 0
+Blocks.Core | Blocks.Core | MaxLength | field public const int C1024 = 1024
+Blocks.Core | Blocks.Core | MaxLength | field public const int C128 = 128
+Blocks.Core | Blocks.Core | MaxLength | field public const int C16 = 16
+Blocks.Core | Blocks.Core | MaxLength | field public const int C2048 = 2048
+Blocks.Core | Blocks.Core | MaxLength | field public const int C256 = 256
+Blocks.Core | Blocks.Core | MaxLength | field public const int C32 = 32
+Blocks.Core | Blocks.Core | MaxLength | field public const int C512 = 512
+Blocks.Core | Blocks.Core | MaxLength | field public const int C64 = 64
+Blocks.Core | Blocks.Core | MaxLength | field public const int C8 = 8
+Blocks.Core | Blocks.Core | MaxLength | type public static class MaxLength
+Blocks.Core | Blocks.Core | Network | method public static string GetLocalIPAddress()
+Blocks.Core | Blocks.Core | Network | type public static class Network
+Blocks.Core | Blocks.Core | ObjectExtensions | method public static System.Collections.Generic.Dictionary<string, object> PropertiesToDictionary(this object obj)
+Blocks.Core | Blocks.Core | ObjectExtensions | method public static System.Collections.Generic.Dictionary<string, string> ToStringDictionary(this object obj)
+Blocks.Core | Blocks.Core | ObjectExtensions | method public static bool IsNotNull(this object theObject)
+Blocks.Core | Blocks.Core | ObjectExtensions | method public static bool IsNull(this object theObject)
+Blocks.Core | Blocks.Core | ObjectExtensions | type public static class ObjectExtensions
+Blocks.Core | Blocks.Core | ReflectionExtensions | method public static System.Collections.Generic.IEnumerable<System.Reflection.MemberInfo> GetPropertiesAndFields(this System.Type this, System.Reflection.BindingFlags flags)
+Blocks.Core | Blocks.Core | ReflectionExtensions | method public static T CreateInstance<T>(this System.Type this, params object[] constructorParameters)
+Blocks.Core | Blocks.Core | ReflectionExtensions | method public static bool IsA(this System.Type this, System.Type type)
+Blocks.Core | Blocks.Core | ReflectionExtensions | method public static bool IsA<T>(this System.Type this)
+Blocks.Core | Blocks.Core | ReflectionExtensions | method public static object GetValue(this System.Reflection.MemberInfo this, object target)
+Blocks.Core | Blocks.Core | ReflectionExtensions | type public static class ReflectionExtensions
+Blocks.Core | Blocks.Core | ServiceCollectionExtensions | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddDerivedTypesOf(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, System.Type baseType, System.Reflection.Assembly[]? assemblies = null, Microsoft.Extensions.DependencyInjection.ServiceLifetime lifetime = 1)
+Blocks.Core | Blocks.Core | ServiceCollectionExtensions | type public static class ServiceCollectionExtensions
+Blocks.Core | Blocks.Core | StringExtensions | method public static T ToEnum<T>(this string value) where T : struct, System.Enum
+Blocks.Core | Blocks.Core | StringExtensions | method public static bool EqualsIgnoreCase(this string me, string theOther)
+Blocks.Core | Blocks.Core | StringExtensions | method public static bool EqualsOrdinalIgnoreCase(this string first, string second)
+Blocks.Core | Blocks.Core | StringExtensions | method public static bool IsNullOrEmpty(this string? value)
+Blocks.Core | Blocks.Core | StringExtensions | method public static int? ToInt(this string input)
+Blocks.Core | Blocks.Core | StringExtensions | method public static string FormatWith(this string this, object arg)
+Blocks.Core | Blocks.Core | StringExtensions | method public static string FormatWith(this string this, params object[] additionalArgs)
+Blocks.Core | Blocks.Core | StringExtensions | method public static string ToCamelCase(this string value)
+Blocks.Core | Blocks.Core | StringExtensions | type public static class StringExtensions
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | ctor public ThreadSafeMemoryCache(Microsoft.Extensions.Caching.Memory.IMemoryCache _cache)
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | method public System.Threading.Tasks.Task<T> GetOrCreateAsync<T>(string cacheKey, System.Func<Microsoft.Extensions.Caching.Memory.ICacheEntry, System.Threading.Tasks.Task<T>> factory)
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | method public T GetOrCreate<T>(System.Func<Microsoft.Extensions.Caching.Memory.ICacheEntry, T> factory)
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | method public T GetOrCreate<T>(T value)
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | method public T GetOrCreate<T>(string cacheKey, System.Func<Microsoft.Extensions.Caching.Memory.ICacheEntry, T> factory)
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | method public T GetOrCreate<T>(string cacheKey, T value)
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | method public T Set<T>(string cacheKey, T value)
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | method public bool TryGet<T>(string cacheKey, out T value)
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | method public void Remove(string cacheKey)
+Blocks.Core | Blocks.Core | ThreadSafeMemoryCache | type public class ThreadSafeMemoryCache : Blocks.Core.IThreadSafeMemoryCache
+Blocks.Core | Blocks.Core.Cache | ICacheable | type public interface ICacheable
+Blocks.Core | Blocks.Core.Cache | MemoryCacheExtensions | method public static T Get<T>(this Microsoft.Extensions.Caching.Memory.IMemoryCache cache)
+Blocks.Core | Blocks.Core.Cache | MemoryCacheExtensions | method public static T GetOrCreateByType<T>(this Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache, System.Func<Microsoft.Extensions.Caching.Memory.ICacheEntry, T> factory)
+Blocks.Core | Blocks.Core.Cache | MemoryCacheExtensions | type public static class MemoryCacheExtensions
+Blocks.Core | Blocks.Core.Context | RequestContext | ctor public RequestContext()
+Blocks.Core | Blocks.Core.Context | RequestContext | property public System.DateTime StartedOn { get; set; }
+Blocks.Core | Blocks.Core.Context | RequestContext | property public bool IsDownload { get; set; }
+Blocks.Core | Blocks.Core.Context | RequestContext | property public bool IsFileTransfer { get; }
+Blocks.Core | Blocks.Core.Context | RequestContext | property public bool IsUpload { get; set; }
+Blocks.Core | Blocks.Core.Context | RequestContext | property public string? CorrelationId { get; set; }
+Blocks.Core | Blocks.Core.Context | RequestContext | property public string? RemoteIp { get; set; }
+Blocks.Core | Blocks.Core.Context | RequestContext | type public class RequestContext
+Blocks.Core | Blocks.Core.Extensions | AssemblyExtensions | method public static string GetServiceName(this System.Reflection.Assembly assembly)
+Blocks.Core | Blocks.Core.Extensions | AssemblyExtensions | type public static class AssemblyExtensions
+Blocks.Core | Blocks.Core.Extensions | RegexExtension | method public static System.Text.RegularExpressions.Match Match(this string content, string pattern)
+Blocks.Core | Blocks.Core.Extensions | RegexExtension | method public static System.Text.RegularExpressions.MatchCollection Matches(this string content, string pattern)
+Blocks.Core | Blocks.Core.Extensions | RegexExtension | type public static class RegexExtension
+Blocks.Core | Blocks.Core.Extensions | TypeExtensions | method public static bool IsRecord(this System.Type type)
+Blocks.Core | Blocks.Core.Extensions | TypeExtensions | type public static class TypeExtensions
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | ctor protected QueryResult(Blocks.Core.GraphQL.QueryResult<T> original)
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | ctor public QueryResult(System.Collections.Generic.List<T> Items)
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | method protected virtual bool PrintMembers(System.Text.StringBuilder builder)
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | method public override bool Equals(object? obj)
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | method public override int GetHashCode()
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | method public override string ToString()
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | method public static bool op_Equality(Blocks.Core.GraphQL.QueryResult<T>? left, Blocks.Core.GraphQL.QueryResult<T>? right)
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | method public static bool op_Inequality(Blocks.Core.GraphQL.QueryResult<T>? left, Blocks.Core.GraphQL.QueryResult<T>? right)
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | method public virtual Blocks.Core.GraphQL.QueryResult<T> <Clone>$()
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | method public virtual bool Equals(Blocks.Core.GraphQL.QueryResult<T>? other)
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | method public void Deconstruct(out System.Collections.Generic.List<T> Items)
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | property protected virtual System.Type EqualityContract { get; }
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | property public System.Collections.Generic.List<T> Items { get; init; }
+Blocks.Core | Blocks.Core.GraphQL | QueryResult<T> | type public record QueryResult<T> : System.IEquatable<Blocks.Core.GraphQL.QueryResult<T>>
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | ctor protected SingleResult(Blocks.Core.GraphQL.SingleResult<T> original)
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | ctor public SingleResult(T Item)
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | method protected virtual bool PrintMembers(System.Text.StringBuilder builder)
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | method public override bool Equals(object? obj)
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | method public override int GetHashCode()
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | method public override string ToString()
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | method public static bool op_Equality(Blocks.Core.GraphQL.SingleResult<T>? left, Blocks.Core.GraphQL.SingleResult<T>? right)
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | method public static bool op_Inequality(Blocks.Core.GraphQL.SingleResult<T>? left, Blocks.Core.GraphQL.SingleResult<T>? right)
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | method public virtual Blocks.Core.GraphQL.SingleResult<T> <Clone>$()
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | method public virtual bool Equals(Blocks.Core.GraphQL.SingleResult<T>? other)
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | method public void Deconstruct(out T Item)
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | property protected virtual System.Type EqualityContract { get; }
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | property public T Item { get; init; }
+Blocks.Core | Blocks.Core.GraphQL | SingleResult<T> | type public record SingleResult<T> : System.IEquatable<Blocks.Core.GraphQL.SingleResult<T>>
+Blocks.Core | Blocks.Core.Json | PrivateContractResolver | ctor public PrivateContractResolver()
+Blocks.Core | Blocks.Core.Json | PrivateContractResolver | method protected override System.Collections.Generic.IList<Newtonsoft.Json.Serialization.JsonProperty> CreateProperties(System.Type type, Newtonsoft.Json.MemberSerialization memberSerialization)
+Blocks.Core | Blocks.Core.Json | PrivateContractResolver | type public class PrivateContractResolver : Newtonsoft.Json.Serialization.DefaultContractResolver, Newtonsoft.Json.Serialization.IContractResolver
+Blocks.Core | Blocks.Core.Security | Base64UrlTokenGenerator | method public static string Generate(int byteLength = 32)
+Blocks.Core | Blocks.Core.Security | Base64UrlTokenGenerator | type public static class Base64UrlTokenGenerator
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | method public abstract System.Collections.Generic.IEnumerable<string> GetClaimValues(string claimName)
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | method public abstract System.Collections.Generic.IReadOnlySet<TEnum> GetUserRoles<TEnum>() where TEnum : struct, System.Enum
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | method public abstract System.Collections.Generic.IReadOnlySet<string> GetUserRoles()
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | method public abstract int GetUserId()
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | method public abstract int? TryGetUserId()
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | method public abstract string GetClaimValue(string claimName)
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | method public abstract string GetUserEmail()
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | method public abstract string GetUserName()
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | method public abstract string? TryGetClaimValue(string claimName)
+Blocks.Core | Blocks.Core.Security | IClaimsProvider | type public interface IClaimsProvider
+Blocks.Core | Blocks.Core.Security | JwtOptions | ctor protected JwtOptions(Blocks.Core.Security.JwtOptions original)
+Blocks.Core | Blocks.Core.Security | JwtOptions | ctor public JwtOptions()
+Blocks.Core | Blocks.Core.Security | JwtOptions | method protected virtual bool PrintMembers(System.Text.StringBuilder builder)
+Blocks.Core | Blocks.Core.Security | JwtOptions | method public override bool Equals(object? obj)
+Blocks.Core | Blocks.Core.Security | JwtOptions | method public override int GetHashCode()
+Blocks.Core | Blocks.Core.Security | JwtOptions | method public override string ToString()
+Blocks.Core | Blocks.Core.Security | JwtOptions | method public static bool op_Equality(Blocks.Core.Security.JwtOptions? left, Blocks.Core.Security.JwtOptions? right)
+Blocks.Core | Blocks.Core.Security | JwtOptions | method public static bool op_Inequality(Blocks.Core.Security.JwtOptions? left, Blocks.Core.Security.JwtOptions? right)
+Blocks.Core | Blocks.Core.Security | JwtOptions | method public virtual Blocks.Core.Security.JwtOptions <Clone>$()
+Blocks.Core | Blocks.Core.Security | JwtOptions | method public virtual bool Equals(Blocks.Core.Security.JwtOptions? other)
+Blocks.Core | Blocks.Core.Security | JwtOptions | property protected virtual System.Type EqualityContract { get; }
+Blocks.Core | Blocks.Core.Security | JwtOptions | property public System.DateTime Expiration { get; }
+Blocks.Core | Blocks.Core.Security | JwtOptions | property public System.DateTime IssuedAt { get; set; }
+Blocks.Core | Blocks.Core.Security | JwtOptions | property public System.TimeSpan ValidFor { get; }
+Blocks.Core | Blocks.Core.Security | JwtOptions | property public int ValidForInMinutes { get; set; }
+Blocks.Core | Blocks.Core.Security | JwtOptions | property public string Audience { get; init; }
+Blocks.Core | Blocks.Core.Security | JwtOptions | property public string Issuer { get; init; }
+Blocks.Core | Blocks.Core.Security | JwtOptions | property public string Secret { get; init; }
+Blocks.Core | Blocks.Core.Security | JwtOptions | type public record JwtOptions : System.IEquatable<Blocks.Core.Security.JwtOptions>
+Blocks.Core | Blocks.FluentValidation | Extensions | method public static FluentValidation.IRuleBuilderOptions<T, TProperty> GreaterThanWithMessageForInvalidId<T, TProperty>(this FluentValidation.IRuleBuilder<T, TProperty> ruleBuilder, TProperty valueToCompare, string propertyName) where TProperty : System.IComparable<TProperty>, System.IComparable
+Blocks.Core | Blocks.FluentValidation | Extensions | method public static FluentValidation.IRuleBuilderOptions<T, TProperty> NotEmptyWithMessage<T, TProperty>(this FluentValidation.IRuleBuilder<T, TProperty> ruleBuilder, string propertyName)
+Blocks.Core | Blocks.FluentValidation | Extensions | method public static FluentValidation.IRuleBuilderOptions<T, TProperty> NotNullWithMessage<T, TProperty>(this FluentValidation.IRuleBuilder<T, TProperty> ruleBuilder)
+Blocks.Core | Blocks.FluentValidation | Extensions | method public static FluentValidation.IRuleBuilderOptions<T, TProperty> WithMessageForEmpty<T, TProperty>(this FluentValidation.IRuleBuilderOptions<T, TProperty> rule, string propertyName)
+Blocks.Core | Blocks.FluentValidation | Extensions | method public static FluentValidation.IRuleBuilderOptions<T, TProperty> WithMessageForInvalidId<T, TProperty>(this FluentValidation.IRuleBuilderOptions<T, TProperty> rule, string propertyName)
+Blocks.Core | Blocks.FluentValidation | Extensions | method public static FluentValidation.IRuleBuilderOptions<T, TProperty> WithMessageForMaxLength<T, TProperty>(this FluentValidation.IRuleBuilderOptions<T, TProperty> rule, string propertyName, int maxLength)
+Blocks.Core | Blocks.FluentValidation | Extensions | method public static FluentValidation.IRuleBuilderOptions<T, string?> MaximumLengthWithMessage<T>(this FluentValidation.IRuleBuilder<T, string?> ruleBuilder, int maxLength, string propertyName)
+Blocks.Core | Blocks.FluentValidation | Extensions | type public static class Extensions
+Blocks.Core | Blocks.FluentValidation | ValidationMessages | field public static readonly string InvalidId
+Blocks.Core | Blocks.FluentValidation | ValidationMessages | field public static readonly string MaxLengthExceeded
+Blocks.Core | Blocks.FluentValidation | ValidationMessages | field public static readonly string NullOrEmptyValue
+Blocks.Core | Blocks.FluentValidation | ValidationMessages | type public static class ValidationMessages
+Blocks.Core | Blocks.Mapster | DependencyInjection | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddMapsterConfigsFromAssemblyContaining<T>(this Microsoft.Extensions.DependencyInjection.IServiceCollection services)
+Blocks.Core | Blocks.Mapster | DependencyInjection | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddMapsterConfigsFromCurrentAssembly(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, System.Reflection.Assembly? assembly = null)
+Blocks.Core | Blocks.Mapster | DependencyInjection | type public static class DependencyInjection
+Blocks.Core | Blocks.Mapster | Extensions | method public static TDestination AdaptWith<TDestination>(this object source, System.Action<TDestination> afterMapping)
+Blocks.Core | Blocks.Mapster | Extensions | method public static object? AdaptTo(this object source, System.Type destinationType)
+Blocks.Core | Blocks.Mapster | Extensions | method public static void MapToConstructor<TSource, TDestination>(this Mapster.TypeAdapterSetter<TSource, TDestination> typeAdapterSetter)
+Blocks.Core | Blocks.Mapster | Extensions | type public static class Extensions
+Blocks.Domain | Blocks.Domain | DomainException | ctor public DomainException(string message, System.Exception? innerException = null)
+Blocks.Domain | Blocks.Domain | DomainException | type public class DomainException : System.Exception, System.Runtime.Serialization.ISerializable
+Blocks.Domain | Blocks.Domain | IAuditableAction | property public abstract System.DateTime CreatedOn { get; }
+Blocks.Domain | Blocks.Domain | IAuditableAction | property public abstract int CreatedById { get; set; }
+Blocks.Domain | Blocks.Domain | IAuditableAction | property public abstract string Action { get; }
+Blocks.Domain | Blocks.Domain | IAuditableAction | property public abstract string? Comment { get; }
+Blocks.Domain | Blocks.Domain | IAuditableAction | property public virtual bool IsAuthenticated { get; }
+Blocks.Domain | Blocks.Domain | IAuditableAction | type public interface IAuditableAction
+Blocks.Domain | Blocks.Domain | IAuditableAction<TActionType> | property public abstract TActionType ActionType { get; }
+Blocks.Domain | Blocks.Domain | IAuditableAction<TActionType> | type public interface IAuditableAction<TActionType> : Blocks.Domain.IAuditableAction where TActionType : System.Enum
+Blocks.Domain | Blocks.Domain | IDomainEvent | type public interface IDomainEvent : FastEndpoints.IEvent, MediatR.INotification
+Blocks.Domain | Blocks.Domain | IDomainEventPublisher | method public abstract System.Threading.Tasks.Task PublishAsync(Blocks.Domain.IDomainEvent event, System.Threading.CancellationToken ct = default)
+Blocks.Domain | Blocks.Domain | IDomainEventPublisher | type public interface IDomainEventPublisher
+Blocks.Domain | Blocks.Domain.Entities | IAuditedEntity | type public interface IAuditedEntity : Blocks.Domain.Entities.IAuditedEntity<int>, Blocks.Entities.IDomainObject, Blocks.Entities.IEntity, Blocks.Entities.IEntity<int>
+Blocks.Domain | Blocks.Domain.Entities | IAuditedEntity<TPrimaryKey> | property public abstract System.DateTime CreatedOn { get; init; }
+Blocks.Domain | Blocks.Domain.Entities | IAuditedEntity<TPrimaryKey> | property public abstract System.DateTime? LastModifiedOn { get; set; }
+Blocks.Domain | Blocks.Domain.Entities | IAuditedEntity<TPrimaryKey> | property public abstract TPrimaryKey CreatedById { get; init; }
+Blocks.Domain | Blocks.Domain.Entities | IAuditedEntity<TPrimaryKey> | property public abstract TPrimaryKey? LastModifiedById { get; set; }
+Blocks.Domain | Blocks.Domain.Entities | IAuditedEntity<TPrimaryKey> | type public interface IAuditedEntity<TPrimaryKey> : Blocks.Entities.IDomainObject, Blocks.Entities.IEntity<TPrimaryKey> where TPrimaryKey : struct
+Blocks.Domain | Blocks.Entities | AggregateRoot | ctor protected AggregateRoot()
+Blocks.Domain | Blocks.Entities | AggregateRoot | type public abstract class AggregateRoot : Blocks.Entities.AggregateRoot<int>, Blocks.Domain.Entities.IAuditedEntity, Blocks.Domain.Entities.IAuditedEntity<int>, Blocks.Entities.IAggregateRoot, Blocks.Entities.IAggregateRoot<int>, Blocks.Entities.IDomainObject, Blocks.Entities.IEntity, Blocks.Entities.IEntity<int>, System.IEquatable<Blocks.Entities.Entity<int>>
+Blocks.Domain | Blocks.Entities | AggregateRoot<TPrimaryKey> | ctor protected AggregateRoot()
+Blocks.Domain | Blocks.Entities | AggregateRoot<TPrimaryKey> | method public void AddDomainEvent(Blocks.Domain.IDomainEvent eventItem)
+Blocks.Domain | Blocks.Entities | AggregateRoot<TPrimaryKey> | method public void ClearDomainEvents()
+Blocks.Domain | Blocks.Entities | AggregateRoot<TPrimaryKey> | property public System.Collections.Generic.IReadOnlyList<Blocks.Domain.IDomainEvent> DomainEvents { get; }
+Blocks.Domain | Blocks.Entities | AggregateRoot<TPrimaryKey> | property public System.DateTime CreatedOn { get; init; }
+Blocks.Domain | Blocks.Entities | AggregateRoot<TPrimaryKey> | property public System.DateTime? LastModifiedOn { get; set; }
+Blocks.Domain | Blocks.Entities | AggregateRoot<TPrimaryKey> | property public TPrimaryKey CreatedById { get; init; }
+Blocks.Domain | Blocks.Entities | AggregateRoot<TPrimaryKey> | property public TPrimaryKey? LastModifiedById { get; set; }
+Blocks.Domain | Blocks.Entities | AggregateRoot<TPrimaryKey> | type public abstract class AggregateRoot<TPrimaryKey> : Blocks.Entities.Entity<TPrimaryKey>, Blocks.Domain.Entities.IAuditedEntity<TPrimaryKey>, Blocks.Entities.IAggregateRoot<TPrimaryKey>, Blocks.Entities.IDomainObject, Blocks.Entities.IEntity<TPrimaryKey>, System.IEquatable<Blocks.Entities.Entity<TPrimaryKey>> where TPrimaryKey : struct
+Blocks.Domain | Blocks.Entities | AggregateTenantEntity | ctor protected AggregateTenantEntity()
+Blocks.Domain | Blocks.Entities | AggregateTenantEntity | property public int TenantId { get; set; }
+Blocks.Domain | Blocks.Entities | AggregateTenantEntity | type public abstract class AggregateTenantEntity : Blocks.Entities.AggregateRoot<int>, Blocks.Domain.Entities.IAuditedEntity<int>, Blocks.Entities.IAggregateRoot<int>, Blocks.Entities.IDomainObject, Blocks.Entities.IEntity<int>, Blocks.Entities.IMultitenancy, System.IEquatable<Blocks.Entities.Entity<int>>
+Blocks.Domain | Blocks.Entities | Entity | ctor protected Entity()
+Blocks.Domain | Blocks.Entities | Entity | type public abstract class Entity : Blocks.Entities.Entity<int>, Blocks.Entities.IDomainObject, Blocks.Entities.IEntity, Blocks.Entities.IEntity<int>, System.IEquatable<Blocks.Entities.Entity<int>>
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | ctor protected Entity()
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | method public bool Equals(Blocks.Entities.Entity<TPrimaryKey>? other)
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | method public override bool Equals(object? obj)
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | method public override int GetHashCode()
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | method public override string ToString()
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | method public static bool op_Equality(Blocks.Entities.Entity<TPrimaryKey> left, Blocks.Entities.Entity<TPrimaryKey> right)
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | method public static bool op_Inequality(Blocks.Entities.Entity<TPrimaryKey> left, Blocks.Entities.Entity<TPrimaryKey> right)
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | property public virtual TPrimaryKey Id { get; init; }
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | property public virtual bool IsNew { get; }
+Blocks.Domain | Blocks.Entities | Entity<TPrimaryKey> | type public abstract class Entity<TPrimaryKey> : Blocks.Entities.IDomainObject, Blocks.Entities.IEntity<TPrimaryKey>, System.IEquatable<Blocks.Entities.Entity<TPrimaryKey>> where TPrimaryKey : struct
+Blocks.Domain | Blocks.Entities | EnumEntity<TEnum> | ctor protected EnumEntity()
+Blocks.Domain | Blocks.Entities | EnumEntity<TEnum> | property public TEnum Name { get; init; }
+Blocks.Domain | Blocks.Entities | EnumEntity<TEnum> | property public string Description { get; init; }
+Blocks.Domain | Blocks.Entities | EnumEntity<TEnum> | type public abstract class EnumEntity<TEnum> : Blocks.Entities.Entity<TEnum>, Blocks.Entities.IDomainObject, Blocks.Entities.IEntity<TEnum>, System.IEquatable<Blocks.Entities.Entity<TEnum>> where TEnum : struct, System.Enum
+Blocks.Domain | Blocks.Entities | IAggregateRoot | type public interface IAggregateRoot : Blocks.Domain.Entities.IAuditedEntity<int>, Blocks.Entities.IAggregateRoot<int>, Blocks.Entities.IDomainObject, Blocks.Entities.IEntity<int>
+Blocks.Domain | Blocks.Entities | IAggregateRoot<TPrimaryKey> | method public abstract void AddDomainEvent(Blocks.Domain.IDomainEvent eventItem)
+Blocks.Domain | Blocks.Entities | IAggregateRoot<TPrimaryKey> | method public abstract void ClearDomainEvents()
+Blocks.Domain | Blocks.Entities | IAggregateRoot<TPrimaryKey> | property public abstract System.Collections.Generic.IReadOnlyList<Blocks.Domain.IDomainEvent> DomainEvents { get; }
+Blocks.Domain | Blocks.Entities | IAggregateRoot<TPrimaryKey> | type public interface IAggregateRoot<TPrimaryKey> : Blocks.Domain.Entities.IAuditedEntity<TPrimaryKey>, Blocks.Entities.IDomainObject, Blocks.Entities.IEntity<TPrimaryKey> where TPrimaryKey : struct
+Blocks.Domain | Blocks.Entities | IAssociationEntity | type public interface IAssociationEntity : Blocks.Entities.IDomainObject
+Blocks.Domain | Blocks.Entities | IDomainObject | type public interface IDomainObject
+Blocks.Domain | Blocks.Entities | IEntity | type public interface IEntity : Blocks.Entities.IDomainObject, Blocks.Entities.IEntity<int>
+Blocks.Domain | Blocks.Entities | IEntity<TPrimaryKey> | property public abstract TPrimaryKey Id { get; }
+Blocks.Domain | Blocks.Entities | IEntity<TPrimaryKey> | type public interface IEntity<TPrimaryKey> : Blocks.Entities.IDomainObject where TPrimaryKey : struct
+Blocks.Domain | Blocks.Entities | IMetadataEntity | type public interface IMetadataEntity : Blocks.Entities.IDomainObject
+Blocks.Domain | Blocks.Entities | IMultitenancy | property public abstract int TenantId { get; set; }
+Blocks.Domain | Blocks.Entities | IMultitenancy | type public interface IMultitenancy
+Blocks.Domain | Blocks.Entities | IValueObject | type public interface IValueObject : Blocks.Entities.IDomainObject
+Blocks.Domain | Blocks.Entities | SingleValueObject<T> | ctor protected SingleValueObject()
+Blocks.Domain | Blocks.Entities | SingleValueObject<T> | method public bool Equals(T other)
+Blocks.Domain | Blocks.Entities | SingleValueObject<T> | method public override bool Equals(object? obj)
+Blocks.Domain | Blocks.Entities | SingleValueObject<T> | method public override int GetHashCode()
+Blocks.Domain | Blocks.Entities | SingleValueObject<T> | method public override string ToString()
+Blocks.Domain | Blocks.Entities | SingleValueObject<T> | method public virtual bool Equals(Blocks.Entities.SingleValueObject<T>? other)
+Blocks.Domain | Blocks.Entities | SingleValueObject<T> | property public T Value { get; protected set; }
+Blocks.Domain | Blocks.Entities | SingleValueObject<T> | type public abstract class SingleValueObject<T> : Blocks.Entities.IDomainObject, Blocks.Entities.IValueObject, System.IEquatable<Blocks.Entities.SingleValueObject<T>>, System.IEquatable<T> where T : struct
+Blocks.Domain | Blocks.Entities | StringValueObject | ctor protected StringValueObject()
+Blocks.Domain | Blocks.Entities | StringValueObject | method public bool Equals(Blocks.Entities.StringValueObject? other)
+Blocks.Domain | Blocks.Entities | StringValueObject | method public bool Equals(string? other)
+Blocks.Domain | Blocks.Entities | StringValueObject | method public override bool Equals(object? obj)
+Blocks.Domain | Blocks.Entities | StringValueObject | method public override int GetHashCode()
+Blocks.Domain | Blocks.Entities | StringValueObject | method public override string ToString()
+Blocks.Domain | Blocks.Entities | StringValueObject | method public static bool op_Equality(Blocks.Entities.StringValueObject? left, Blocks.Entities.StringValueObject? right)
+Blocks.Domain | Blocks.Entities | StringValueObject | method public static bool op_Inequality(Blocks.Entities.StringValueObject? left, Blocks.Entities.StringValueObject? right)
+Blocks.Domain | Blocks.Entities | StringValueObject | property public string Value { get; protected set; }
+Blocks.Domain | Blocks.Entities | StringValueObject | type public abstract class StringValueObject : Blocks.Entities.IDomainObject, Blocks.Entities.IValueObject, System.IEquatable<Blocks.Entities.StringValueObject>, System.IEquatable<string>
+Blocks.Domain | Blocks.Entities | TenantEntity | ctor protected TenantEntity()
+Blocks.Domain | Blocks.Entities | TenantEntity | property public int TenantId { get; set; }
+Blocks.Domain | Blocks.Entities | TenantEntity | type public abstract class TenantEntity : Blocks.Entities.Entity, Blocks.Entities.IDomainObject, Blocks.Entities.IEntity, Blocks.Entities.IEntity<int>, Blocks.Entities.IMultitenancy, System.IEquatable<Blocks.Entities.Entity<int>>
+Blocks.Domain | Blocks.Entities | ValueObject | ctor protected ValueObject()
+Blocks.Domain | Blocks.Entities | ValueObject | method protected abstract System.Collections.Generic.IEnumerable<object?> GetEqualityComponents()
+Blocks.Domain | Blocks.Entities | ValueObject | method public bool Equals(Blocks.Entities.ValueObject? other)
+Blocks.Domain | Blocks.Entities | ValueObject | method public override bool Equals(object? obj)
+Blocks.Domain | Blocks.Entities | ValueObject | method public override int GetHashCode()
+Blocks.Domain | Blocks.Entities | ValueObject | method public static bool op_Equality(Blocks.Entities.ValueObject? a, Blocks.Entities.ValueObject? b)
+Blocks.Domain | Blocks.Entities | ValueObject | method public static bool op_Inequality(Blocks.Entities.ValueObject? a, Blocks.Entities.ValueObject? b)
+Blocks.Domain | Blocks.Entities | ValueObject | type public abstract class ValueObject : Blocks.Entities.IDomainObject, Blocks.Entities.IValueObject, System.IEquatable<Blocks.Entities.ValueObject>
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | ApplicationDbContext<TDbContext> | ctor public ApplicationDbContext(Microsoft.EntityFrameworkCore.DbContextOptions<TDbContext> _options, Microsoft.Extensions.Caching.Memory.IMemoryCache _cache)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | ApplicationDbContext<TDbContext> | method public virtual System.Collections.Generic.IEnumerable<TDestination> GetAllCached<TEntity, TDestination>() where TEntity : class, Blocks.Core.Cache.ICacheable
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | ApplicationDbContext<TDbContext> | method public virtual System.Collections.Generic.IEnumerable<TEntity> GetAllCached<TEntity>() where TEntity : class, Blocks.Core.Cache.ICacheable
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | ApplicationDbContext<TDbContext> | method public virtual TEntity GetByIdCached<TEntity, TId>(TId id) where TEntity : class, Blocks.Entities.IEntity<TId>, Blocks.Core.Cache.ICacheable where TId : struct
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | ApplicationDbContext<TDbContext> | type public class ApplicationDbContext<TDbContext> : Microsoft.EntityFrameworkCore.DbContext, Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>, Microsoft.EntityFrameworkCore.Infrastructure.IResettableService, Microsoft.EntityFrameworkCore.Internal.IDbContextDependencies, Microsoft.EntityFrameworkCore.Internal.IDbContextPoolable, Microsoft.EntityFrameworkCore.Internal.IDbSetCache, System.IAsyncDisposable, System.IDisposable where TDbContext : Microsoft.EntityFrameworkCore.DbContext
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | AuditedEntityConfiguration<T, TKey> | ctor protected AuditedEntityConfiguration()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | AuditedEntityConfiguration<T, TKey> | method public override void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<T> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | AuditedEntityConfiguration<T, TKey> | property protected virtual bool HasConcurrencyToken { get; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | AuditedEntityConfiguration<T, TKey> | property protected virtual string DefaultDateSql { get; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | AuditedEntityConfiguration<T, TKey> | type public abstract class AuditedEntityConfiguration<T, TKey> : Blocks.EntityFrameworkCore.EntityConfiguration<T, TKey>, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<T> where T : class, Blocks.Entities.IEntity<TKey>, Blocks.Entities.IAggregateRoot<TKey> where TKey : struct
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | AuditedEntityConfiguration<T> | ctor protected AuditedEntityConfiguration()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | AuditedEntityConfiguration<T> | method public override void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<T> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | AuditedEntityConfiguration<T> | property protected virtual bool HasGeneratedId { get; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | AuditedEntityConfiguration<T> | type public abstract class AuditedEntityConfiguration<T> : Blocks.EntityFrameworkCore.AuditedEntityConfiguration<T, int>, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<T> where T : class, Blocks.Entities.IAggregateRoot
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.ComplexTypePropertyBuilder<T> HasJsonListConversion<T>(this Microsoft.EntityFrameworkCore.Metadata.Builders.ComplexTypePropertyBuilder<T> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.ComplexTypePropertyBuilder<TProperty> HasColumnNameSameAsProperty<TProperty>(this Microsoft.EntityFrameworkCore.Metadata.Builders.ComplexTypePropertyBuilder<TProperty> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<System.Collections.Generic.IReadOnlyList<T>> HasJsonReadOnlyListConversion<T>(this Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<System.Collections.Generic.IReadOnlyList<T>> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<System.Collections.Generic.IReadOnlyList<string>> HasCsvListConversion(this Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<System.Collections.Generic.IReadOnlyList<string>> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<T> HasJsonCollectionConversion<T>(this Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<T> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TCollection> HasJsonListConversion<TCollection, T>(this Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TCollection> builder) where TCollection : System.Collections.Generic.IList<T>
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TEnum> HasEnumAsStringConversion<TEnum>(this Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TEnum> builder, int maxLength = 64) where TEnum : System.Enum
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TEnum> HasEnumConversion<TEnum>(this Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TEnum> builder, int maxLength = 64) where TEnum : System.Enum
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TEnum> HasEnumToStringConversion<TEnum>(this Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TEnum> builder, int maxLength = 64) where TEnum : struct, System.Enum
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TProperty> HasColumnNameSameAsProperty<TProperty>(this Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<TProperty> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<System.Collections.Generic.IReadOnlyList<T>, string> BuildJsonReadOnlyListConvertor<T>()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | method public static Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<TCollection, string> BuildJsonListConvertor<TCollection>()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | BuilderExtensions | type public static class BuilderExtensions
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | CachedRepository<TDbContext, TEntity, TId> | ctor protected CachedRepository(TDbContext _dbContext, Microsoft.Extensions.Caching.Memory.IMemoryCache _cache)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | CachedRepository<TDbContext, TEntity, TId> | method public System.Collections.Generic.IEnumerable<TEntity> GetAll()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | CachedRepository<TDbContext, TEntity, TId> | method public TEntity GetById(TId id)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | CachedRepository<TDbContext, TEntity, TId> | type public abstract class CachedRepository<TDbContext, TEntity, TId> where TDbContext : Microsoft.EntityFrameworkCore.DbContext where TEntity : class, Blocks.Entities.IEntity<TId>, Blocks.Core.Cache.ICacheable where TId : struct
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | field public static readonly Newtonsoft.Json.JsonSerializerSettings DefaultSettings
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | method public static Microsoft.Extensions.Hosting.IHost Migrate<TDbContext>(this Microsoft.Extensions.Hosting.IHost app) where TDbContext : Microsoft.EntityFrameworkCore.DbContext
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | method public static System.IDisposable UseManualGenerateId<TEntity>(this Microsoft.EntityFrameworkCore.DbContext ctx, bool enabled) where TEntity : class
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | method public static System.Threading.Tasks.Task<int> DispatchDomainEventsAsync(this Microsoft.EntityFrameworkCore.DbContext ctx, Blocks.Domain.IDomainEventPublisher eventPublisher, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | method public static TEntity[] LoadFromJson<TEntity>(this Microsoft.EntityFrameworkCore.DbContext context, string folderPath = "Data/Test") where TEntity : class
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | method public static void SeedFromJsonFile<TEntity>(this Microsoft.EntityFrameworkCore.DbContext context, string folderPath = "Data/Test", bool disableAutoGenerate = false) where TEntity : class
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | method public static void SeedTestData<TContext>(this System.IServiceProvider services, System.Action<TContext> seeder) where TContext : Microsoft.EntityFrameworkCore.DbContext
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | method public static void TryReseedTable<TEntity>(this Microsoft.EntityFrameworkCore.DbContext context) where TEntity : class
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | method public static void UnTrackCacheableEntities(this Microsoft.EntityFrameworkCore.DbContext context)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DbContextExtensions | type public static class DbContextExtensions
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DesignTimeFactoryBase<TContext> | ctor protected DesignTimeFactoryBase()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DesignTimeFactoryBase<TContext> | method protected abstract void ConfigureProvider(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<TContext> b, string cs)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DesignTimeFactoryBase<TContext> | method public TContext CreateDbContext(string[] args)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | DesignTimeFactoryBase<TContext> | type public abstract class DesignTimeFactoryBase<TContext> : Microsoft.EntityFrameworkCore.Design.IDesignTimeDbContextFactory<TContext> where TContext : Microsoft.EntityFrameworkCore.DbContext
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityConfiguration<T, TKey> | ctor protected EntityConfiguration()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityConfiguration<T, TKey> | method public virtual void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<T> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityConfiguration<T, TKey> | property protected virtual string EntityName { get; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityConfiguration<T, TKey> | type public abstract class EntityConfiguration<T, TKey> : Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<T> where T : class, Blocks.Entities.IEntity<TKey> where TKey : struct
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityConfiguration<T> | ctor protected EntityConfiguration()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityConfiguration<T> | method public override void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<T> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityConfiguration<T> | property protected virtual bool HasGeneratedId { get; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityConfiguration<T> | type public abstract class EntityConfiguration<T> : Blocks.EntityFrameworkCore.EntityConfiguration<T, int>, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<T> where T : class, Blocks.Entities.IEntity
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityTypeBuilderExtensions | method public static bool SeedFromJsonFile<T>(this Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<T> builder, string folder = "Data/Master") where T : class
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityTypeBuilderExtensions | method public static void AddQueryFilter<T>(this Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder entityTypeBuilder, System.Linq.Expressions.Expression<System.Func<T, bool>> expression)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EntityTypeBuilderExtensions | type public static class EntityTypeBuilderExtensions
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EnumEntityConfiguration<T, TEnum> | ctor protected EnumEntityConfiguration()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EnumEntityConfiguration<T, TEnum> | method public override void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<T> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | EnumEntityConfiguration<T, TEnum> | type public abstract class EnumEntityConfiguration<T, TEnum> : Blocks.EntityFrameworkCore.EntityConfiguration<T, TEnum>, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<T> where T : Blocks.Entities.EnumEntity<TEnum> where TEnum : struct, System.Enum
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract System.Linq.IQueryable<TEntity> Query()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract System.Linq.IQueryable<TEntity> QueryNotTracked()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract System.Threading.Tasks.Task AddRangeAsync(System.Collections.Generic.IEnumerable<TEntity> entities, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract System.Threading.Tasks.Task<TEntity> AddAsync(TEntity entity, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract System.Threading.Tasks.Task<TEntity?> GetByIdAsync(TKey id, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract System.Threading.Tasks.Task<bool> DeleteByIdAsync(TKey id, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract System.Threading.Tasks.Task<bool> ExistsAsync(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract System.Threading.Tasks.Task<bool> ExistsAsync(TKey id, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract System.Threading.Tasks.Task<int> SaveChangesAsync(System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract TEntity Update(TEntity entity)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract void ClearTracking()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract void Remove(TEntity entity)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract void RemoveRange(System.Collections.Generic.IEnumerable<TEntity> entities)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | method public abstract void UpdateRange(System.Collections.Generic.IEnumerable<TEntity> entities)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity, TKey> | type public interface IRepository<TEntity, TKey> where TEntity : class, Blocks.Entities.IEntity<TKey> where TKey : struct
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | IRepository<TEntity> | type public interface IRepository<TEntity> : Blocks.EntityFrameworkCore.IRepository<TEntity, int> where TEntity : class, Blocks.Entities.IEntity<int>
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | MetadataConfiguration<T> | ctor protected MetadataConfiguration()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | MetadataConfiguration<T> | method public virtual void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<T> builder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | MetadataConfiguration<T> | type public abstract class MetadataConfiguration<T> : Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<T> where T : class, Blocks.Entities.IMetadataEntity
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | ModelBuilderExtensions | method public static void UseCamelCaseForColumns(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | ModelBuilderExtensions | method public static void UseEntityTypeNamesAsTables(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, EFCore.NamingConventions.Internal.INameRewriter? nameRewriter = null)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | ModelBuilderExtensions | method public static void UseLowerCaseNamingConvention(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | ModelBuilderExtensions | type public static class ModelBuilderExtensions
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | ctor protected RepositoryBase(TContext db)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | field protected readonly Microsoft.EntityFrameworkCore.DbSet<TEntity> _entity
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | field protected readonly TContext _dbContext
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public System.Threading.Tasks.Task<TEntity?> FindByIdAsync(TKey id)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public System.Threading.Tasks.Task<bool> ExistsAsync(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual System.Linq.IQueryable<TEntity> Query()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual System.Linq.IQueryable<TEntity> QueryNotTracked()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual System.Threading.Tasks.Task AddRangeAsync(System.Collections.Generic.IEnumerable<TEntity> entities, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual System.Threading.Tasks.Task<TEntity> AddAsync(TEntity entity, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual System.Threading.Tasks.Task<TEntity> UpsertAsync(TEntity entity, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual System.Threading.Tasks.Task<TEntity?> GetByIdAsync(TKey id, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual System.Threading.Tasks.Task<bool> DeleteByIdAsync(TKey id, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual System.Threading.Tasks.Task<bool> ExistsAsync(TKey id, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual System.Threading.Tasks.Task<int> SaveChangesAsync(System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual TEntity Update(TEntity entity)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual void ClearTracking()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual void Remove(TEntity entity)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual void RemoveRange(System.Collections.Generic.IEnumerable<TEntity> entities)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | method public virtual void UpdateRange(System.Collections.Generic.IEnumerable<TEntity> entities)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | property protected Microsoft.EntityFrameworkCore.DbSet<TEntity> Entity { get; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | property public TContext Context { get; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | property public string TableName { get; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity, TKey> | type public abstract class RepositoryBase<TContext, TEntity, TKey> : Blocks.EntityFrameworkCore.IRepository<TEntity, TKey> where TContext : Microsoft.EntityFrameworkCore.DbContext where TEntity : class, Blocks.Entities.IEntity<TKey> where TKey : struct
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity> | ctor public RepositoryBase(TContext dbContext)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryBase<TContext, TEntity> | type public class RepositoryBase<TContext, TEntity> : Blocks.EntityFrameworkCore.RepositoryBase<TContext, TEntity, int>, Blocks.EntityFrameworkCore.IRepository<TEntity, int> where TContext : Microsoft.EntityFrameworkCore.DbContext where TEntity : class, Blocks.Entities.IEntity<int>
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryExtensions | method public static System.Threading.Tasks.Task EnsureNotExistsOrThrowAsync<TEntity, TContext>(this Blocks.EntityFrameworkCore.RepositoryBase<TContext, TEntity> repository, int id, System.Threading.CancellationToken ct = default) where TEntity : class, Blocks.Entities.IEntity<int> where TContext : Microsoft.EntityFrameworkCore.DbContext
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryExtensions | method public static System.Threading.Tasks.Task ExistsOrThrowAsync<TEntity, TContext>(this Blocks.EntityFrameworkCore.RepositoryBase<TContext, TEntity> repository, int id, System.Threading.CancellationToken ct = default) where TEntity : class, Blocks.Entities.IEntity<int> where TContext : Microsoft.EntityFrameworkCore.DbContext
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryExtensions | method public static System.Threading.Tasks.Task<TEntity> FindByIdOrThrowAsync<TEntity, TContext>(this Blocks.EntityFrameworkCore.RepositoryBase<TContext, TEntity> repository, int id) where TEntity : class, Blocks.Entities.IEntity<int> where TContext : Microsoft.EntityFrameworkCore.DbContext
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryExtensions | method public static System.Threading.Tasks.Task<TEntity> FindByIdOrThrowAsync<TEntity>(this Microsoft.EntityFrameworkCore.DbSet<TEntity> dbSet, int id) where TEntity : class, Blocks.Entities.IEntity<int>
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryExtensions | method public static System.Threading.Tasks.Task<TEntity> GetByIdOrThrowAsync<TEntity, TContext>(this Blocks.EntityFrameworkCore.RepositoryBase<TContext, TEntity> repository, int id, System.Threading.CancellationToken ct = default) where TEntity : class, Blocks.Entities.IEntity<int> where TContext : Microsoft.EntityFrameworkCore.DbContext
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryExtensions | method public static System.Threading.Tasks.Task<TEntity> SingleOrThrowAsync<TEntity>(this System.Linq.IQueryable<TEntity> source, System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate, System.Threading.CancellationToken ct = default) where TEntity : class, Blocks.Entities.IEntity<int>
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | RepositoryExtensions | type public static class RepositoryExtensions
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantEntityConfiguration<T> | ctor protected TenantEntityConfiguration()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantEntityConfiguration<T> | method public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<T> entity)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantEntityConfiguration<T> | property protected virtual string EntityName { get; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantEntityConfiguration<T> | type public abstract class TenantEntityConfiguration<T> : Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<T> where T : Blocks.Entities.TenantEntity
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantOptions | ctor public TenantOptions()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantOptions | property public int TenantId { get; set; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantOptions | type public class TenantOptions
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantRepositoryBase<TContext, TEntity, TKey> | ctor protected TenantRepositoryBase(TContext context, Blocks.Entities.IMultitenancy multitenancy)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantRepositoryBase<TContext, TEntity, TKey> | method public virtual System.Threading.Tasks.Task<TEntity> GetAsync(TKey id)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantRepositoryBase<TContext, TEntity, TKey> | method public virtual TEntity GetById(TKey id, bool throwNotFound = true)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TenantRepositoryBase<TContext, TEntity, TKey> | type public abstract class TenantRepositoryBase<TContext, TEntity, TKey> : Blocks.EntityFrameworkCore.RepositoryBase<TContext, TEntity, TKey>, Blocks.EntityFrameworkCore.IRepository<TEntity, TKey> where TContext : Microsoft.EntityFrameworkCore.DbContext where TEntity : class, Blocks.Entities.IEntity<TKey> where TKey : struct
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionOptions | ctor public TransactionOptions()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionOptions | property public bool UseSingleTransaction { get; set; }
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionOptions | type public class TransactionOptions
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionProvider | ctor public TransactionProvider(System.Data.Common.DbConnection _dbConnection)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionProvider | method public System.Threading.Tasks.Task CommitTransactionAsync(System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionProvider | method public System.Threading.Tasks.Task RollbackTransactionAsync(System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionProvider | method public System.Threading.Tasks.Task<System.Data.Common.DbTransaction> BeginTransactionAsync(System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionProvider | method public System.Threading.Tasks.Task<System.Data.Common.DbTransaction> GetCurrentTransaction(System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionProvider | method public System.Threading.Tasks.ValueTask DisposeAsync()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionProvider | method public void Dispose()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionProvider | type public class TransactionProvider : System.IDisposable
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionalDispatchDomainEventsInterceptor | ctor public TransactionalDispatchDomainEventsInterceptor(Blocks.EntityFrameworkCore.TransactionProvider transactionProvider, Microsoft.Extensions.Options.IOptions<Blocks.EntityFrameworkCore.TransactionOptions> transactionOptions, Blocks.Domain.IDomainEventPublisher eventPublisher)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionalDispatchDomainEventsInterceptor | method public System.Threading.Tasks.ValueTask DisposeAsync()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionalDispatchDomainEventsInterceptor | method public override System.Threading.Tasks.Task SaveChangesFailedAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData eventData, System.Threading.CancellationToken cancellationToken = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionalDispatchDomainEventsInterceptor | method public override System.Threading.Tasks.ValueTask<Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult<int>> SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult<int> result, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionalDispatchDomainEventsInterceptor | method public override System.Threading.Tasks.ValueTask<int> SavedChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int result, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore | TransactionalDispatchDomainEventsInterceptor | type public class TransactionalDispatchDomainEventsInterceptor : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesInterceptor, Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor, Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor, System.IAsyncDisposable
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore.Interceptors | DispatchDomainEventsInterceptor | ctor public DispatchDomainEventsInterceptor(Blocks.Domain.IDomainEventPublisher _publisher)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore.Interceptors | DispatchDomainEventsInterceptor | method public override System.Threading.Tasks.ValueTask<int> SavedChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int result, System.Threading.CancellationToken ct = default)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore.Interceptors | DispatchDomainEventsInterceptor | type public class DispatchDomainEventsInterceptor : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesInterceptor, Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor, Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore.Seeding | ManualGenerateIdScope<TEntity> | ctor public ManualGenerateIdScope(Microsoft.EntityFrameworkCore.DbContext dbContext, bool enabled)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore.Seeding | ManualGenerateIdScope<TEntity> | method public static Blocks.EntityFrameworkCore.Seeding.ManualGenerateIdScope<TEntity> Create(Microsoft.EntityFrameworkCore.DbContext ctx, bool enabled)
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore.Seeding | ManualGenerateIdScope<TEntity> | method public void Dispose()
+Blocks.EntityFrameworkCore | Blocks.EntityFrameworkCore.Seeding | ManualGenerateIdScope<TEntity> | type public sealed class ManualGenerateIdScope<TEntity> : System.IDisposable where TEntity : class
+Blocks.Exceptions | Blocks.Exceptions | BadRequestException | ctor public BadRequestException(string exceptionMessage)
+Blocks.Exceptions | Blocks.Exceptions | BadRequestException | ctor public BadRequestException(string exceptionMessage, System.Exception exception)
+Blocks.Exceptions | Blocks.Exceptions | BadRequestException | type public class BadRequestException : Blocks.Exceptions.HttpException, System.Runtime.Serialization.ISerializable
+Blocks.Exceptions | Blocks.Exceptions | HttpException | ctor public HttpException(System.Net.HttpStatusCode statusCode, string? message)
+Blocks.Exceptions | Blocks.Exceptions | HttpException | ctor public HttpException(System.Net.HttpStatusCode statusCode, string? message, System.Exception ex)
+Blocks.Exceptions | Blocks.Exceptions | HttpException | property public System.Net.HttpStatusCode HttpStatusCode { get; }
+Blocks.Exceptions | Blocks.Exceptions | HttpException | property public int StatusCode { get; }
+Blocks.Exceptions | Blocks.Exceptions | HttpException | type public class HttpException : System.Exception, System.Runtime.Serialization.ISerializable
+Blocks.Exceptions | Blocks.Exceptions | NotFoundException | ctor public NotFoundException(System.Exception exception, string? exceptionMessage)
+Blocks.Exceptions | Blocks.Exceptions | NotFoundException | ctor public NotFoundException(string exceptionMessage)
+Blocks.Exceptions | Blocks.Exceptions | NotFoundException | type public class NotFoundException : Blocks.Exceptions.HttpException, System.Runtime.Serialization.ISerializable
+Blocks.Exceptions | Blocks.Exceptions | UnauthorizedException | ctor public UnauthorizedException(string? message)
+Blocks.Exceptions | Blocks.Exceptions | UnauthorizedException | type public class UnauthorizedException : Blocks.Exceptions.HttpException, System.Runtime.Serialization.ISerializable
+Blocks.Exceptions | Blocks.Linq | Extensions | method public static TSource SingleOrThrow<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate)
+Blocks.Exceptions | Blocks.Linq | Extensions | type public static class Extensions
+Blocks.FastEndpoints | Blocks.FastEndpoints | DomainEventPublisher | ctor public DomainEventPublisher()
+Blocks.FastEndpoints | Blocks.FastEndpoints | DomainEventPublisher | method public System.Threading.Tasks.Task PublishAsync(Blocks.Domain.IDomainEvent event, System.Threading.CancellationToken ct = default)
+Blocks.FastEndpoints | Blocks.FastEndpoints | DomainEventPublisher | type public sealed class DomainEventPublisher : Blocks.Domain.IDomainEventPublisher
+Blocks.FastEndpoints | Blocks.FastEndpoints | Extensions | method public static Microsoft.AspNetCore.Builder.IApplicationBuilder UseCustomFastEndpoints(this Microsoft.AspNetCore.Builder.IApplicationBuilder app)
+Blocks.FastEndpoints | Blocks.FastEndpoints | Extensions | type public static class Extensions
+Blocks.FastEndpoints | Blocks.FastEnpoints | AssignUserIdPreProcessor | ctor public AssignUserIdPreProcessor()
+Blocks.FastEndpoints | Blocks.FastEnpoints | AssignUserIdPreProcessor | method public System.Threading.Tasks.Task PreProcessAsync(FastEndpoints.IPreProcessorContext context, System.Threading.CancellationToken ct)
+Blocks.FastEndpoints | Blocks.FastEnpoints | AssignUserIdPreProcessor | type public class AssignUserIdPreProcessor : FastEndpoints.IGlobalPreProcessor, FastEndpoints.IPreProcessor, FastEndpoints.IProcessor
+Blocks.Hasura | Blocks.Hasura | BulkHasuraRequest | ctor public BulkHasuraRequest(System.Collections.Generic.List<Blocks.Hasura.IRequest> args)
+Blocks.Hasura | Blocks.Hasura | BulkHasuraRequest | property public override string Type { get; }
+Blocks.Hasura | Blocks.Hasura | BulkHasuraRequest | type public class BulkHasuraRequest : Blocks.Hasura.HasuraRequest, Blocks.Hasura.IRequest
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService | ctor public HasuraMetadataInitService(Blocks.Hasura.HasuraMetadataService _hasuraMetadataService, Microsoft.Extensions.Logging.ILogger<Blocks.Hasura.HasuraMetadataInitService> _logger, Microsoft.Extensions.Options.IOptions<Blocks.Hasura.HasuraOptions> hasuraOptions)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService | method protected override System.Threading.Tasks.Task ExecuteAsync(System.Threading.CancellationToken ct)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService | property public Blocks.Hasura.HasuraMetadataInitService.InitState State { get; }
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService | type public class HasuraMetadataInitService : Microsoft.Extensions.Hosting.BackgroundService, Microsoft.Extensions.Hosting.IHostedService, System.IDisposable
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService.InitState | field Failed = 3
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService.InitState | field RelationsTracked = 2
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService.InitState | field Started = 0
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService.InitState | field Succeeded = 4
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService.InitState | field TablesTracked = 1
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataInitService.InitState | type public enum HasuraMetadataInitService.InitState : int
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataService | ctor public HasuraMetadataService(Blocks.Hasura.Metadata.IHasuraMetadataApi _metadataApi, Blocks.Hasura.Query.IHasuraSqlApi _queryApi, Microsoft.Extensions.Logging.ILogger<Blocks.Hasura.HasuraMetadataService> _logger)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataService | method public System.Threading.Tasks.Task TrackAllRelationshipsAsync(System.Collections.Generic.IEnumerable<Blocks.Hasura.Metadata.Relationship> relationships, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataService | method public System.Threading.Tasks.Task TrackAllTablesAsync(System.Collections.Generic.IEnumerable<Blocks.Hasura.Metadata.TableRef> tables, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataService | method public System.Threading.Tasks.Task TrackAllTablesBulkAsync(System.Collections.Generic.IEnumerable<Blocks.Hasura.Metadata.TableRef> tables, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataService | method public System.Threading.Tasks.Task TrackArrayRelationship(Blocks.Hasura.Metadata.Relationship relationship, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataService | method public System.Threading.Tasks.Task TrackObjectRelationship(Blocks.Hasura.Metadata.Relationship relationship, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataService | method public System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<Blocks.Hasura.Metadata.Relationship>> GetAllRelationshipsAsync(System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataService | method public System.Threading.Tasks.Task<System.Collections.Generic.List<Blocks.Hasura.Metadata.TableRef>> DiscoverTablesAsync(System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura | HasuraMetadataService | type public sealed class HasuraMetadataService
+Blocks.Hasura | Blocks.Hasura | HasuraOptions | ctor public HasuraOptions()
+Blocks.Hasura | Blocks.Hasura | HasuraOptions | property public string AdminSecret { get; init; }
+Blocks.Hasura | Blocks.Hasura | HasuraOptions | property public string BaseUrl { get; init; }
+Blocks.Hasura | Blocks.Hasura | HasuraOptions | type public class HasuraOptions
+Blocks.Hasura | Blocks.Hasura | HasuraRegistration | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddHasuraGraphQL(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration)
+Blocks.Hasura | Blocks.Hasura | HasuraRegistration | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddHasuraMetadata(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration)
+Blocks.Hasura | Blocks.Hasura | HasuraRegistration | type public static class HasuraRegistration
+Blocks.Hasura | Blocks.Hasura | HasuraRequest | ctor public HasuraRequest(Blocks.Hasura.IRequest args)
+Blocks.Hasura | Blocks.Hasura | HasuraRequest | ctor public HasuraRequest(System.Collections.Generic.List<Blocks.Hasura.IRequest> args)
+Blocks.Hasura | Blocks.Hasura | HasuraRequest | property public abstract string Type { get; }
+Blocks.Hasura | Blocks.Hasura | HasuraRequest | property public object Args { get; }
+Blocks.Hasura | Blocks.Hasura | HasuraRequest | property public string Source { get; set; }
+Blocks.Hasura | Blocks.Hasura | HasuraRequest | type public abstract class HasuraRequest : Blocks.Hasura.IRequest
+Blocks.Hasura | Blocks.Hasura | IRequest | property public abstract string Type { get; }
+Blocks.Hasura | Blocks.Hasura | IRequest | type public interface IRequest
+Blocks.Hasura | Blocks.Hasura | SingleHasuraRequest | ctor public SingleHasuraRequest(Blocks.Hasura.IRequest args)
+Blocks.Hasura | Blocks.Hasura | SingleHasuraRequest | property public override string Type { get; }
+Blocks.Hasura | Blocks.Hasura | SingleHasuraRequest | type public class SingleHasuraRequest : Blocks.Hasura.HasuraRequest, Blocks.Hasura.IRequest
+Blocks.Hasura | Blocks.Hasura.Metadata | ArrayRelationshipUsing | ctor public ArrayRelationshipUsing()
+Blocks.Hasura | Blocks.Hasura.Metadata | ArrayRelationshipUsing | property public Blocks.Hasura.Metadata.ForeignKeyRef ForeignKeyConstraintOn { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | ArrayRelationshipUsing | type public class ArrayRelationshipUsing
+Blocks.Hasura | Blocks.Hasura.Metadata | ForeignKeyRef | ctor public ForeignKeyRef()
+Blocks.Hasura | Blocks.Hasura.Metadata | ForeignKeyRef | property public Blocks.Hasura.Metadata.TableRef Table { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | ForeignKeyRef | property public string[] Columns { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | ForeignKeyRef | type public class ForeignKeyRef
+Blocks.Hasura | Blocks.Hasura.Metadata | IHasuraMetadataApi | method public abstract System.Threading.Tasks.Task<Blocks.Hasura.Metadata.PgSuggestRelationshipsResponse> SuggestAsync(Blocks.Hasura.SingleHasuraRequest request, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura.Metadata | IHasuraMetadataApi | method public abstract System.Threading.Tasks.Task<object> BulkAsync(Blocks.Hasura.BulkHasuraRequest request, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura.Metadata | IHasuraMetadataApi | method public abstract System.Threading.Tasks.Task<object> SingleAsync(Blocks.Hasura.SingleHasuraRequest request, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura.Metadata | IHasuraMetadataApi | method public abstract System.Threading.Tasks.Task<object> TrackTableAsync(Blocks.Hasura.SingleHasuraRequest request, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura.Metadata | IHasuraMetadataApi | type public interface IHasuraMetadataApi
+Blocks.Hasura | Blocks.Hasura.Metadata | ObjectRelationshipUsing | ctor public ObjectRelationshipUsing()
+Blocks.Hasura | Blocks.Hasura.Metadata | ObjectRelationshipUsing | property public string[] ForeignKeyConstraintOn { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | ObjectRelationshipUsing | type public class ObjectRelationshipUsing
+Blocks.Hasura | Blocks.Hasura.Metadata | PgBulkArgs | ctor public PgBulkArgs()
+Blocks.Hasura | Blocks.Hasura.Metadata | PgBulkArgs | property public System.Collections.Generic.List<object> Operations { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgBulkArgs | type public class PgBulkArgs
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateArrayRelationshipRequest | ctor public PgCreateArrayRelationshipRequest()
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateArrayRelationshipRequest | property public Blocks.Hasura.Metadata.ArrayRelationshipUsing Using { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateArrayRelationshipRequest | property public override string Type { get; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateArrayRelationshipRequest | type public class PgCreateArrayRelationshipRequest : Blocks.Hasura.Metadata.PgCreateRelationshipRequest, Blocks.Hasura.IRequest
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateObjectRelationshipRequest | ctor public PgCreateObjectRelationshipRequest()
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateObjectRelationshipRequest | property public Blocks.Hasura.Metadata.ObjectRelationshipUsing Using { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateObjectRelationshipRequest | property public override string Type { get; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateObjectRelationshipRequest | type public class PgCreateObjectRelationshipRequest : Blocks.Hasura.Metadata.PgCreateRelationshipRequest, Blocks.Hasura.IRequest
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateRelationshipRequest | ctor protected PgCreateRelationshipRequest()
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateRelationshipRequest | property public Blocks.Hasura.Metadata.TableRef Table { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateRelationshipRequest | property public abstract string Type { get; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateRelationshipRequest | property public string Name { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateRelationshipRequest | property public string Source { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgCreateRelationshipRequest | type public abstract class PgCreateRelationshipRequest : Blocks.Hasura.IRequest
+Blocks.Hasura | Blocks.Hasura.Metadata | PgSuggestRelationshipsRequest | ctor public PgSuggestRelationshipsRequest()
+Blocks.Hasura | Blocks.Hasura.Metadata | PgSuggestRelationshipsRequest | property public bool OmitTracked { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgSuggestRelationshipsRequest | property public string Source { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgSuggestRelationshipsRequest | property public string Type { get; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgSuggestRelationshipsRequest | type public class PgSuggestRelationshipsRequest : Blocks.Hasura.IRequest
+Blocks.Hasura | Blocks.Hasura.Metadata | PgSuggestRelationshipsResponse | ctor public PgSuggestRelationshipsResponse()
+Blocks.Hasura | Blocks.Hasura.Metadata | PgSuggestRelationshipsResponse | property public System.Collections.Generic.List<Blocks.Hasura.Metadata.Relationship> Relationships { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgSuggestRelationshipsResponse | type public class PgSuggestRelationshipsResponse
+Blocks.Hasura | Blocks.Hasura.Metadata | PgTrackTableRequest | ctor public PgTrackTableRequest()
+Blocks.Hasura | Blocks.Hasura.Metadata | PgTrackTableRequest | property public Blocks.Hasura.Metadata.TableRef Table { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgTrackTableRequest | property public string Source { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgTrackTableRequest | property public string Type { get; }
+Blocks.Hasura | Blocks.Hasura.Metadata | PgTrackTableRequest | type public class PgTrackTableRequest : Blocks.Hasura.IRequest
+Blocks.Hasura | Blocks.Hasura.Metadata | RelEndpoint | ctor public RelEndpoint()
+Blocks.Hasura | Blocks.Hasura.Metadata | RelEndpoint | property public Blocks.Hasura.Metadata.TableRef Table { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | RelEndpoint | property public System.Collections.Generic.List<string> Columns { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | RelEndpoint | property public string ConstraintName { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | RelEndpoint | type public class RelEndpoint
+Blocks.Hasura | Blocks.Hasura.Metadata | Relationship | ctor public Relationship()
+Blocks.Hasura | Blocks.Hasura.Metadata | Relationship | property public Blocks.Hasura.Metadata.RelEndpoint From { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | Relationship | property public Blocks.Hasura.Metadata.RelEndpoint To { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | Relationship | property public string Type { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | Relationship | type public class Relationship
+Blocks.Hasura | Blocks.Hasura.Metadata | TableRef | ctor public TableRef()
+Blocks.Hasura | Blocks.Hasura.Metadata | TableRef | property public string Name { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | TableRef | property public string Schema { get; set; }
+Blocks.Hasura | Blocks.Hasura.Metadata | TableRef | type public class TableRef
+Blocks.Hasura | Blocks.Hasura.Query | IHasuraSqlApi | method public abstract System.Threading.Tasks.Task<Blocks.Hasura.Query.RunSqlResponse> RunSqlAsync(Blocks.Hasura.SingleHasuraRequest request, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura.Query | IHasuraSqlApi | method public abstract System.Threading.Tasks.Task<Blocks.Hasura.Query.RunSqlResponse> RunSqlV1Async(Blocks.Hasura.SingleHasuraRequest request, System.Threading.CancellationToken ct = default)
+Blocks.Hasura | Blocks.Hasura.Query | IHasuraSqlApi | type public interface IHasuraSqlApi
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlArgs | ctor public RunSqlArgs()
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlArgs | property public bool Cascade { get; set; }
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlArgs | property public bool ReadOnly { get; set; }
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlArgs | property public string Source { get; set; }
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlArgs | property public string Sql { get; set; }
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlArgs | property public string Type { get; }
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlArgs | type public class RunSqlArgs : Blocks.Hasura.IRequest
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlResponse | ctor public RunSqlResponse()
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlResponse | property public System.Collections.Generic.IEnumerable<System.Collections.Generic.IReadOnlyList<string>> Values { get; }
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlResponse | property public System.Collections.Generic.IReadOnlyList<string> Header { get; }
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlResponse | property public System.Collections.Generic.List<System.Collections.Generic.List<string>> Result { get; set; }
+Blocks.Hasura | Blocks.Hasura.Query | RunSqlResponse | type public class RunSqlResponse
+Blocks.Http.Abstractions | Blocks.Http.Abstractions | FormFileExtensions | method public static string GetExtension(this Microsoft.AspNetCore.Http.IFormFile file, string defaultExtension = "")
+Blocks.Http.Abstractions | Blocks.Http.Abstractions | FormFileExtensions | type public static class FormFileExtensions
+Blocks.MediatR | Blocks.MediatR | DomainEventPublisher | ctor public DomainEventPublisher(MediatR.IMediator mediator)
+Blocks.MediatR | Blocks.MediatR | DomainEventPublisher | method public System.Threading.Tasks.Task PublishAsync(Blocks.Domain.IDomainEvent event, System.Threading.CancellationToken ct = default)
+Blocks.MediatR | Blocks.MediatR | DomainEventPublisher | type public sealed class DomainEventPublisher : Blocks.Domain.IDomainEventPublisher
+Blocks.MediatR | Blocks.MediatR | ICommand | type public interface ICommand : Blocks.MediatR.ICommand<MediatR.Unit>, MediatR.IBaseRequest, MediatR.IRequest<MediatR.Unit>
+Blocks.MediatR | Blocks.MediatR | ICommand<TResponse> | type public interface ICommand<TResponse> : MediatR.IBaseRequest, MediatR.IRequest<TResponse>
+Blocks.MediatR | Blocks.MediatR | IQuery<TResponse> | type public interface IQuery<TResponse> : MediatR.IBaseRequest, MediatR.IRequest<TResponse> where TResponse : notnull
+Blocks.MediatR | Blocks.MediatR.Behaviours | AssignUserIdBehavior<TRequest, TResponse> | ctor public AssignUserIdBehavior(Blocks.Core.Security.IClaimsProvider _claimsProvider)
+Blocks.MediatR | Blocks.MediatR.Behaviours | AssignUserIdBehavior<TRequest, TResponse> | method public System.Threading.Tasks.Task<TResponse> Handle(TRequest request, MediatR.RequestHandlerDelegate<TResponse> next, System.Threading.CancellationToken ct)
+Blocks.MediatR | Blocks.MediatR.Behaviours | AssignUserIdBehavior<TRequest, TResponse> | type public class AssignUserIdBehavior<TRequest, TResponse> : MediatR.IPipelineBehavior<TRequest, TResponse> where TRequest : Blocks.Domain.IAuditableAction
+Blocks.MediatR | Blocks.MediatR.Behaviours | LoggingBehavior<TRequest, TResponse> | ctor public LoggingBehavior(Microsoft.Extensions.Logging.ILogger<Blocks.MediatR.Behaviours.LoggingBehavior<TRequest, TResponse>> _logger, Blocks.Core.Context.RequestContext _requestContext)
+Blocks.MediatR | Blocks.MediatR.Behaviours | LoggingBehavior<TRequest, TResponse> | method public System.Threading.Tasks.Task<TResponse> Handle(TRequest request, MediatR.RequestHandlerDelegate<TResponse> next, System.Threading.CancellationToken ct)
+Blocks.MediatR | Blocks.MediatR.Behaviours | LoggingBehavior<TRequest, TResponse> | type public class LoggingBehavior<TRequest, TResponse> : MediatR.IPipelineBehavior<TRequest, TResponse> where TRequest : MediatR.IRequest<TResponse> where TResponse : notnull
+Blocks.MediatR | Blocks.MediatR.Behaviours | ValidationBehavior<TRequest, TResponse> | ctor public ValidationBehavior(System.Collections.Generic.IEnumerable<FluentValidation.IValidator<TRequest>> validators)
+Blocks.MediatR | Blocks.MediatR.Behaviours | ValidationBehavior<TRequest, TResponse> | method public System.Threading.Tasks.Task<TResponse> Handle(TRequest request, MediatR.RequestHandlerDelegate<TResponse> next, System.Threading.CancellationToken cancellationToken)
+Blocks.MediatR | Blocks.MediatR.Behaviours | ValidationBehavior<TRequest, TResponse> | type public class ValidationBehavior<TRequest, TResponse> : MediatR.IPipelineBehavior<TRequest, TResponse> where TRequest : MediatR.IRequest<TResponse>
+Blocks.Messaging | Blocks.Messaging | RabbitMqOptions | ctor public RabbitMqOptions()
+Blocks.Messaging | Blocks.Messaging | RabbitMqOptions | property public string Host { get; set; }
+Blocks.Messaging | Blocks.Messaging | RabbitMqOptions | property public string Password { get; set; }
+Blocks.Messaging | Blocks.Messaging | RabbitMqOptions | property public string UserName { get; set; }
+Blocks.Messaging | Blocks.Messaging | RabbitMqOptions | property public string VirtualHost { get; set; }
+Blocks.Messaging | Blocks.Messaging | RabbitMqOptions | type public class RabbitMqOptions
+Blocks.Messaging | Blocks.Messaging.MassTransit | DependencyInjection | method public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddMassTransitWithRabbitMQ(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration, System.Reflection.Assembly assembly)
+Blocks.Messaging | Blocks.Messaging.MassTransit | DependencyInjection | type public static class DependencyInjection
+Blocks.Messaging | Blocks.Messaging.MassTransit | SnakeCaseWithServiceSuffixNameFormatter | ctor public SnakeCaseWithServiceSuffixNameFormatter(string serviceName)
+Blocks.Messaging | Blocks.Messaging.MassTransit | SnakeCaseWithServiceSuffixNameFormatter | method public override string SanitizeName(string name)
+Blocks.Messaging | Blocks.Messaging.MassTransit | SnakeCaseWithServiceSuffixNameFormatter | type public class SnakeCaseWithServiceSuffixNameFormatter : MassTransit.SnakeCaseEndpointNameFormatter, MassTransit.IEndpointNameFormatter
+Blocks.Redis | Blocks.Redis | Entity | ctor public Entity()
+Blocks.Redis | Blocks.Redis | Entity | property public int Id { get; set; }
+Blocks.Redis | Blocks.Redis | Entity | type public class Entity
+Blocks.Redis | Blocks.Redis | Extensions | method public static System.Threading.Tasks.Task SeedFromJson<TEntity>(this Redis.OM.RedisConnectionProvider provider, StackExchange.Redis.IDatabase redisDb, string folderPath = "Data/Test") where TEntity : Blocks.Redis.Entity
+Blocks.Redis | Blocks.Redis | Extensions | method public static System.Threading.Tasks.Task<T> GetByIdOrThrowAsync<T>(this Redis.OM.Searching.IRedisCollection<T> collection, int id)
+Blocks.Redis | Blocks.Redis | Extensions | method public static System.Threading.Tasks.Task<T?> GetByIdAsync<T>(this Redis.OM.Searching.IRedisCollection<T> collection, int id)
+Blocks.Redis | Blocks.Redis | Extensions | method public static System.Threading.Tasks.Task<bool> SetSequenceSeed<TEntity>(this StackExchange.Redis.IDatabase redisDb, int startValue = 0) where TEntity : Blocks.Redis.Entity
+Blocks.Redis | Blocks.Redis | Extensions | method public static System.Threading.Tasks.Task<int> GenerateNewId<TEntity>(this StackExchange.Redis.IDatabase redisDb) where TEntity : Blocks.Redis.Entity
+Blocks.Redis | Blocks.Redis | Extensions | type public static class Extensions
+Blocks.Redis | Blocks.Redis | Repository<T> | ctor public Repository(StackExchange.Redis.IConnectionMultiplexer redis, Redis.OM.RedisConnectionProvider provider)
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task AddAsync(T entity)
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task DeleteAsync(T entity)
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task ReplaceAsync(T entity)
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task UpdateAsync(T entity)
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<T>> GetAllAsync()
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task<T> GetByIdOrThrowAsync(int id)
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task<T?> GetByIdAsync(int id)
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task<bool> Exists(int id)
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task<int> GenerateNewId()
+Blocks.Redis | Blocks.Redis | Repository<T> | method public System.Threading.Tasks.Task<int> GenerateNewId<TOther>() where TOther : Blocks.Redis.Entity
+Blocks.Redis | Blocks.Redis | Repository<T> | method public T? GetById(int id)
+Blocks.Redis | Blocks.Redis | Repository<T> | property public Redis.OM.Aggregation.RedisAggregationSet<T> Aggregate { get; }
+Blocks.Redis | Blocks.Redis | Repository<T> | property public Redis.OM.Searching.IRedisCollection<T> Collection { get; }
+Blocks.Redis | Blocks.Redis | Repository<T> | type public class Repository<T> where T : Blocks.Redis.Entity

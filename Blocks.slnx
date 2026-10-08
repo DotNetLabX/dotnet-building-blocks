@@ -1,0 +1,29 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Blocks.AspNetCore/Blocks.AspNetCore.csproj" />
+    <Project Path="src/Blocks.Core/Blocks.Core.csproj" />
+    <Project Path="src/Blocks.Domain/Blocks.Domain.csproj" />
+    <Project Path="src/Blocks.EntityFrameworkCore/Blocks.EntityFrameworkCore.csproj" />
+    <Project Path="src/Blocks.Exceptions/Blocks.Exceptions.csproj" />
+    <Project Path="src/Blocks.FastEndpoints/Blocks.FastEndpoints.csproj" />
+    <Project Path="src/Blocks.Hasura/Blocks.Hasura.csproj" />
+    <Project Path="src/Blocks.Http.Abstractions/Blocks.Http.Abstractions.csproj" />
+    <Project Path="src/Blocks.MediatR/Blocks.MediatR.csproj" />
+    <Project Path="src/Blocks.Messaging/Blocks.Messaging.csproj" />
+    <Project Path="src/Blocks.Redis/Blocks.Redis.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Blocks.AspNetCore.Tests/Blocks.AspNetCore.Tests.csproj" />
+    <Project Path="tests/Blocks.EntityFrameworkCore.Tests/Blocks.EntityFrameworkCore.Tests.csproj" />
+    <Project Path="tests/Blocks.FastEndpoints.Tests/Blocks.FastEndpoints.Tests.csproj" />
+    <Project Path="tests/Blocks.Hygiene.Tests/Blocks.Hygiene.Tests.csproj" />
+    <Project Path="tests/Blocks.Portability.Tests/Blocks.Portability.Tests.csproj" />
+    <Project Path="tests/Blocks.SurfaceDump.Tests/Blocks.SurfaceDump.Tests.csproj" />
+    <Project Path="tests/Blocks.Sync.Tests/Blocks.Sync.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/Blocks.ForeignSnapshot/Blocks.ForeignSnapshot.csproj" />
+    <Project Path="tools/Blocks.SurfaceDump/Blocks.SurfaceDump.csproj" />
+    <Project Path="tools/Blocks.Sync/Blocks.Sync.csproj" />
+  </Folder>
+</Solution>

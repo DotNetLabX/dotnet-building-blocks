@@ -54,12 +54,12 @@ Rule list: the spec carries `Rule list: not landed` (owner skipped it); no `spec
 
 | Step | Skill | Disposition | TDD | Feature-Specific Inputs | Gap? |
 |------|-------|-------------|-----|------------------------|------|
-| 1 | central-package-management | Follow | no | root central file with pinning on, solution, editor and git attributes, foreign-repo snapshot | — |
+| 1 | central-package-management | Follow | no | root central file with pinning on, solution, editor and git attributes, foreign-repo snapshot tool and record | — |
 | 2 | framework-currency; central-package-management | Follow | no | 11 blocks to `src/`, net10.0, version lines, warning fixes, surface tool and reference baseline | — |
-| 3 | (none) | — | no | the rename table in step 3 | gap: no skill for a namespace/public-rename pass |
-| 4 | (none) | — | no | comment rules A11, B1, B2 | gap: no skill for a comment-convention sweep |
+| 3 | (none) | — | yes | the rename table in step 3; the hygiene test project and its first three tests | gap: no skill for a namespace/public-rename pass |
+| 4 | (none) | — | yes | comment rules A11, B1, B2; the marker and commented-out-code tests | gap: no skill for a comment-convention sweep |
 | 5 | error-handling | Follow | yes | 403/409/502 types, mapper changes D1 | — |
-| 6 | persistence-patterns | Follow | yes | D2, D3, A4, the conflict helper | — |
+| 6 | persistence-patterns | Follow | yes | D2, D3 (reference line kept, two tests), A4, the conflict helper | — |
 | 7 | domain-patterns | Follow | yes | D4 runtime-type publish on FastEndpoints 8.x | — |
 | 8 | service-infra-conventions | Follow | yes | A2 claims provider fix | — |
 | 9 | (none) | — | no | 11 block read-mes | gap: no skill for a block read-me |
@@ -72,7 +72,7 @@ Rule list: the spec carries `Rule list: not landed` (owner skipped it); no `spec
 
 ## Domain Model Changes
 
-None to shapes (the 16 kept conflicts stay as the reference has them). Behaviour fixes only: D3 upsert, A4
+None to shapes (the 17 kept conflicts stay as the reference has them; D3 joined them on 2026-10-08). Behaviour fixes only: A4
 delete-by-id (step 6), D4 publish (step 7).
 
 ## Data Model Changes
@@ -91,14 +91,22 @@ Follow central-package-management. Create in `D:\src\dotnet-building-blocks\`:
 - `Directory.Build.props` — this repo's build only: `TreatWarningsAsErrors` true, `Deterministic` true. Nothing a
   block needs to build lives here (spec item 2).
 - `.editorconfig` (`charset = utf-8`, `end_of_line = lf`), `.gitattributes` (`* text=auto eol=lf`).
-- `.gitignore`: add `.claude/.current-agent`, `.claude/audit/`, `.claude/.pipeline-state`.
-- `docs/specs/F1-VersionOne/delivery/foreign-repos-before.txt`: for the reference, sprint-rituals and
-  knowledge-gateway, `git -C {repo} rev-parse HEAD`; the full output of
-  `git --no-optional-locks -C {repo} status --porcelain --ignored`; the SHA-256 of
-  `git --no-optional-locks -C {repo} diff HEAD --binary` (content of every changed tracked file); the SHA-256 of
-  each untracked file's content; and, for each ignored entry, its last-write time. Written before any other step.
+- `.gitignore`: add `.claude/.current-agent`, `.claude/audit/`, `.claude/.pipeline-state`, and
+  `docs/specs/F1-VersionOne/delivery/foreign-repos-*.txt` (the record lists file names of the owner's private
+  repos; this repo is public — Decisions).
+- `tools/Blocks.ForeignSnapshot/` (net10.0 console, in `Blocks.slnx` under `tools`, no package references):
+  `record --repo <path> … --out <file>` (questions.md Q1). Every git call carries `--no-optional-locks`; stdout
+  only. Per repo: `git rev-parse HEAD`; the full output of `git status --porcelain --ignored`; the SHA-256 of
+  `git diff HEAD --binary -- <path>` for each path of `git diff HEAD --name-only`; the SHA-256 of each file of
+  `git ls-files --others --exclude-standard`; and, for each `!!` line of the listing, its last-write time.
+  Deterministic text: one section per repo in argument order, lines sorted ordinal, lowercase hex, UTC round-trip
+  times, invariant culture, UTF-8 without byte-order mark, LF.
+- Run it on the reference, sprint-rituals and knowledge-gateway to
+  `docs/specs/F1-VersionOne/delivery/foreign-repos-before.txt`, before any other step's work.
 
-Accept: the snapshot file exists with three sections; the props files are evaluated by step 2's build.
+Accept: `dotnet build tools/Blocks.ForeignSnapshot` with zero warnings; two back-to-back `record` runs on the
+reference alone give byte-identical files; the snapshot file exists with three sections and `git status` in this
+repo does not list it.
 
 ### Step 2 — Move the 11 blocks onto .NET 10; the surface tool and the reference baseline
 
@@ -119,7 +127,8 @@ Follow framework-currency and central-package-management. Heavy step.
      **12.5.0** exactly; MediatR.Contracts 2.0.1; MassTransit.RabbitMQ → latest 8.x; FluentValidation (and
      DependencyInjectionExtensions) → latest 12.x; EFCore.NamingConventions → 10.x; every other third-party package
      → the reference's major line, newer only where .NET 10 restore requires it. Pins carried over from the
-     reference (protobuf-net, protobuf-net.Core, System.ServiceModel.Primitives) on their reference major lines.
+     reference (protobuf-net, protobuf-net.Core) on their reference major lines. `System.ServiceModel.Primitives`
+     is not pinned: on .NET 10 it is in no block's graph (questions.md Q6, dropped in fix round 1).
    - `Blocks.Http.Abstractions`: replace the `Microsoft.AspNetCore.Http.Abstractions` 2.3.0 package with
      `<FrameworkReference Include="Microsoft.AspNetCore.App" />` (no 10.x package exists).
    - Drop package references no block code uses (Decisions): `Microsoft.AspNetCore.Authentication.JwtBearer`,
@@ -163,8 +172,13 @@ path on a tie. Apply exactly this table (from the plan-time per-folder scan) and
 | `src/Blocks.Redis/Repository.cs:45` | comment "Sections in Journal" | reworded without product words |
 
 The Async rows are the complete result of the plan-time scan of task-returning methods (12 hits: these 9 plus 3
-framework-fixed `Handle`); no private or internal method needs a rename. The gates are step 13's hygiene tests
-(namespace per folder, Async names, product words), run at the end of this step too.
+framework-fixed `Handle`); no private or internal method needs a rename.
+
+Gates (questions.md Q3): first create `tests/Blocks.Hygiene.Tests/` (xUnit v3 + AwesomeAssertions, under `tests` in
+`Blocks.slnx`, referencing the 11 block projects) with three of step 13's tests, as step 13 defines them —
+namespace per folder in `src/`, Async names over the loaded block assemblies, product words in `src/`. Run them
+before the renames: each fails on the current code (its planted violation for step 13's Accept; red output in
+`implementation.md`). Accept: all three pass after the renames; `dotnet build Blocks.slnx` with zero warnings.
 
 ### Step 4 — Comments to the conventions
 
@@ -174,7 +188,8 @@ remove `///` documentation except where a member's behaviour cannot be read from
 
 Accept: before and after the step, build `src/` with `Deterministic=true` and `DebugType=none`; every block's DLL is
 byte-identical (a comment-only edit cannot change IL). Every remaining `///` block is listed in `implementation.md`
-with its reason. Step 13's marker and commented-out-code tests pass.
+with its reason. Step 13's marker and commented-out-code tests, added to `tests/Blocks.Hygiene.Tests/` at the start
+of this step and seen failing on the pre-step code (questions.md Q3), pass.
 
 ### Step 5 — Error types and the error mapper (D1, A1)
 
@@ -183,14 +198,20 @@ Follow error-handling. TDD.
   the reference's subclass shape (`HttpException` with `HttpStatusCode`, inner-exception constructor).
 - `src/Blocks.AspNetCore/Middlewares/GlobalExceptionMiddleware.cs`: change **only** D1's listed behaviours — the
   three statuses; any other `HttpException` → its own `StatusCode`; a 500 outside development → the fixed text
-  "An unexpected error occurred."; camelCase reply names; 499 only while `!Response.HasStarted`, also when an inner
-  exception is the cancellation. Keep the reference's class shape (`sealed`, `IWebHostEnvironment`), its log
+  "An unexpected error occurred."; camelCase reply names; 499 only while `!Response.HasStarted` **and only when the
+  client's request was aborted** — the line-40 filter becomes `context.RequestAborted.IsCancellationRequested &&
+  IsCausedByCancellation(ex)` (owner, questions.md Q5) — also when an inner exception is the cancellation; a
+  cancellation without an abort takes the normal mapping (a wrapping `HttpException` → its own status, a bare one
+  → a logged 500). Keep the reference's class shape (`sealed`, `IWebHostEnvironment`), its log
   threshold (500 and up) and its development `Details` (stack trace) on every reply, validation included.
   Sprint-rituals' `Blocks.AspNetCore/Middlewares/GlobalExceptionMiddleware.cs` is a pattern for the inner-cause
   check only (`IsCausedByCancellation`).
 - Tests in `tests/Blocks.AspNetCore.Tests/` (xUnit v3 + AwesomeAssertions, `Microsoft.AspNetCore.TestHost`; the test
   project setup as sprint-rituals' tests): status per type (400 validation, argument, bad-request and domain; 401;
-  403; 404; 409; 499; 500; 502); an unlisted `HttpException` subclass → its own code; wrapped cancellation → 499;
+  403; 404; 409; 499; 500; 502); an unlisted `HttpException` subclass → its own code; with the request's abort token cancelled,
+  bare and wrapped cancellation → 499 (the two existing 499 tests cancel it); without an abort,
+  `TaskCanceledException` wrapped in `BadGatewayException` → 502 (`UpstreamTimeoutWrappedAsBadGateway_Answers502`,
+  red first on the current filter) and a bare one → 500 (`CancellationWithoutClientAbort_IsNot499`);
   cancellation after the response started → status unchanged, no second exception; a 500 outside development has
   the fixed text and not the thrown message; in development a reply carries `details`; reply names `statusCode`,
   `message`, `traceId`, `details`, and in a validation reply `errors[].propertyName`, `errors[].errorMessage`.
@@ -205,17 +226,24 @@ Follow persistence-patterns. TDD, each test red on the old code first. Tests in
   throws `ConflictException`. Test: it throws that type for an existing id.
 - D2: `EntityConfigurations/AuditedEntityConfiguration.cs` — remove the `GETUTCDATE()` default and the protected
   virtual `DefaultDateSql`. Test: the model of an audited test entity has no default SQL on `CreatedOn`.
-- D3: `Repositories/Repository.cs` `UpsertAsync` copies `Entry(entity).CurrentValues` (pattern: sprint-rituals
-  `Blocks.EntityFrameworkCore/Repositories/RepositoryBase.cs` `UpsertAsync`, that line only). Test: an existing
-  entity with a property mapped to a private field (`PropertyAccessMode.Field`) is updated through upsert; a fresh
-  context reads the new value.
+- D3 (owner re-ruling 2026-10-08, questions.md Q4): `Repositories/Repository.cs` `UpsertAsync` keeps the
+  **reference's line**, `_dbContext.Entry(existingEntity).CurrentValues.SetValues(entity)` — revert the
+  sprint-rituals line (`SetValues(_dbContext.Entry(entity).CurrentValues)`) written in the first pass. Two tests:
+  - `Upsert_UpdatesAPropertyStoredInAPrivateField` (kept as written): an entity with a property mapped to a
+    private field (`PropertyAccessMode.Field`) is updated through upsert; a fresh context reads the new value.
+    A pin, green on both lines — the one test of this step exempt from red-first.
+  - `Upsert_KeepsShadowPropertyValues` (new): an entity with a shadow foreign key (a navigation with no CLR key
+    property, optional) and a shadow column, saved with both set; an upsert of a new instance with the same id;
+    a fresh context reads both shadow values unchanged. **Red first on the current sprint-rituals line** (it
+    sets both to null — architect probe, EF Core 10.0.12, questions.md Q4), then green after the revert; record
+    the red output in `implementation.md`.
 - A4: `DeleteByIdAsync` builds the statement from the model's delimited table and key column names
   (`ISqlGenerationHelper.DelimitIdentifier`) into a plain string and passes the id as a parameter to the raw-SQL
   call — no interpolated table name, no suppression. Keep its return value and signature. Test: delete an entity
   by id; it is gone and the call returns true.
 
-Satisfies: spec AC "updates an existing entity…", "deletes an entity by id", "no database-specific default", and
-the error-mapper bullet's conflict-helper case.
+Satisfies: spec AC "updates an existing entity…" (both its clauses), "deletes an entity by id", "no
+database-specific default", and the error-mapper bullet's conflict-helper case.
 
 ### Step 7 — FastEndpoints publisher (D4)
 
@@ -238,7 +266,9 @@ Satisfies: spec AC "A claims test…".
 
 No skill (gap). `src/Blocks.{Name}/README.md` for all 11, each with the headings `## Purpose`, `## Depends on`
 (blocks and packages) and `## Registration`, under ~40 lines. EntityFrameworkCore's names both the manual-id
-insert scope and the table reseed as needing SQL Server. Gated by step 13.
+insert scope and the table reseed as needing SQL Server. AspNetCore's says that outside development only a 500 is
+replaced by the fixed text, and every other status carries its exception's message (questions.md Q7). Gated by
+step 13.
 
 ### Step 10 — The sync tool and the root read-me
 
@@ -319,8 +349,9 @@ Satisfies: spec AC "`docs/public-names.md` lists every difference…".
 
 ### Step 13 — Repo-wide hygiene tests
 
-No skill (gap). `tests/Blocks.Hygiene.Tests/`, reading files as bytes over the whole repo except `bin`, `obj`
-and `.git`:
+No skill (gap). `tests/Blocks.Hygiene.Tests/` (created in step 3; the namespace, Async-name and product-word tests
+come from step 3, the marker and commented-out-code tests from step 4 — this step adds the rest), reading files as
+bytes over the whole repo except `bin`, `obj` and `.git`:
 - no file starts with `EF BB BF` (`docs/` included);
 - no `//insight`, `//talk`, `//todo` (case-insensitive) and no commented-out code (a `//` line whose text ends in
   `;`, `{` or `}` or starts with a C# statement keyword) in `src/` and `tools/`;
@@ -339,16 +370,24 @@ and `.git`:
   names `blocks.json`, `forward`, `back`, `status`, `--adopt` and the way-out sentence.
 
 Accept: every hygiene test passes; each was seen failing once on a planted violation (listed in `implementation.md`);
-the same record as `foreign-repos-before.txt`, taken again for the three read-only repos, equals it.
+the same record as `foreign-repos-before.txt`, taken again with `tools/Blocks.ForeignSnapshot record` to
+`foreign-repos-after.txt`, is compared with it by a `compare --before <file> --after <file>` command added to
+`tools/Blocks.ForeignSnapshot` in this step. Scope (owner, questions.md Q2, 2026-10-08):
+- **must be equal** (any difference fails the step): the HEAD of all three repos; every line of the reference's
+  section; and, in sprint-rituals and knowledge-gateway, every listing line, per-path diff hash, untracked-file
+  hash and ignored-entry time whose path is under `src/BuildingBlocks/`;
+- **listed, not failed**: every other difference in sprint-rituals and knowledge-gateway, written by the command
+  and copied into `implementation.md` for the owner to confirm as their own before the close.
+`compare` exits 0 when the must-be-equal part is equal (whatever is listed), 1 otherwise.
 
 ## Must-NOT-Change
 
 | Invariant | Pinned by | Disposition |
 |-----------|-----------|-------------|
-| Shapes of the 16 kept conflicts and every public name outside the list | step 12 diff against the reference's own surface | pinned |
+| Shapes of the 17 kept conflicts and every public name outside the list | step 12 diff against the reference's own surface | pinned |
 | Step 4 changes comments only | step 4 byte-identical deterministic DLLs | pinned |
-| Behaviour of the 16 kept conflicts | no tests in version one (full coverage is version two); the code review reads the diff | accepted-gap (owner's version-one scope) |
-| The three read-only repos are untouched | step 13 compare with `foreign-repos-before.txt` (HEAD, status, changed-content hash, untracked-file hashes) | pinned; inside ignored folders only last-write times are compared (their size rules out hashing), so a write there that keeps the time is not seen — accepted-gap |
+| Behaviour of the 17 kept conflicts | no tests in version one, except D3's upsert (step 6) (full coverage is version two); the code review reads the diff | accepted-gap (owner's version-one scope) |
+| The three read-only repos are untouched | step 13 compare with `foreign-repos-before.txt` (HEAD, status, changed-content hash per path, untracked-file hashes; strict for the reference and for `src/BuildingBlocks/` in the other two, owner's Q2) | pinned; inside ignored folders only last-write times are compared (their size rules out hashing), so a write there that keeps the time is not seen — accepted-gap |
 | A block builds alone in an app | step 11 | pinned |
 
 ## Testing Strategy
@@ -373,10 +412,16 @@ None — the repo has no KB.
 | Nullable annotation fixes allowed in step 2 and listed | zero warnings without suppressions is a spec criterion | suppress, or leave warnings | decided |
 | Test projects only for the blocks this release changes | the owner chose "risky parts tested"; full coverage is version two | one test project per block now | decided |
 | Reference baseline built from a scratch copy under the temp directory | the reference repo stays untouched and the baseline holds no step-2 edits | a baseline from this repo's step-2 build | decided |
+| Foreign-repo record written by a C# console tool in `tools/` (Q1) | step 13 re-runs the same code, so the format cannot drift; the solution build compiles it | a .NET file-based app outside the solution; shell commands now and a re-implementation in step 13 | decided |
+| The foreign-repo records are git-ignored, not committed (Q1) | this repo is public and the records list file names from the owner's private repos | commit them as delivery evidence | decided |
+| Hygiene tests for steps 3 and 4 written in those steps (Q3) | the plan names them as those steps' gates; each is red on the real pre-step code | equivalent scans now, tests in step 13 | decided |
+| Drop the `System.ServiceModel.Primitives` pin (Q6) | in no block's graph on .NET 10; a pin there tells every app to pin a package it never resolves | keep the reference's three pins | decided |
+| A 5xx other than 500 keeps its message; documented, not changed (Q7) | D1 limits the fixed text to 500; the application writes those messages | the fixed text for every 5xx | decided |
 
 ## Open Questions
 
-None.
+None. (Answered by the owner 2026-10-08: questions.md Q2 — step 13's compare scope; Q4 — step 6 keeps the
+reference's upsert line; Q5 — 499 only when the client's request was aborted, step 5.)
 
 ## Plan Review
 

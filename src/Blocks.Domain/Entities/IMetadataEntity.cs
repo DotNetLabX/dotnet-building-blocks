@@ -1,0 +1,8 @@
+using Blocks.Domain;
+
+namespace Blocks.Entities;
+
+/// <summary>
+/// use those entities for configurations you need to store in your database
+/// </summary>
+public interface IMetadataEntity : IDomainObject;

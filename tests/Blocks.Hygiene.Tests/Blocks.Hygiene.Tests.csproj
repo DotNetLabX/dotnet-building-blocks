@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Blocks.AspNetCore\Blocks.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.Core\Blocks.Core.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.Domain\Blocks.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.EntityFrameworkCore\Blocks.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.Exceptions\Blocks.Exceptions.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.FastEndpoints\Blocks.FastEndpoints.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.Hasura\Blocks.Hasura.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.Http.Abstractions\Blocks.Http.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.MediatR\Blocks.MediatR.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.Messaging\Blocks.Messaging.csproj" />
+    <ProjectReference Include="..\..\src\Blocks.Redis\Blocks.Redis.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="AwesomeAssertions" />
+  </ItemGroup>
+
+</Project>
