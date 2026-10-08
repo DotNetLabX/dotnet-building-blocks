@@ -116,3 +116,11 @@
 | 7 | Team-lead shell slip: backticks in a double-quoted command were expanded (one stray `dotnet nuget locals` usage error) | review.md fix lists briefly mangled | redone from a script file |
 | 2 | dev-s1 ran `git mv -k` (a subagent git write) on an untracked file; no-op, and the boundary detector logged nothing — a detector miss to report as plugin feedback | none on the tree | logged; reminder in the next resume |
 | 1 | Untracked `docs/specs/F1-VersionOne/delivery/.claude/` appeared (reported by dev-s1, not its own) — likely a hook resolving its root from a shifted working directory | stray local state inside the spec folder | investigate before the closing commit; never stage it |
+
+## Post-close
+
+| # | From → To | Phase | Message | Problem |
+|---|---|---|---|---|
+| 89 | user → team-lead | close | Merge (fast-forward), push main, and the root read-me must tell why the repo exists | — |
+| 90 | team-lead | close | Read-me "Why this repo exists" added; BUG-2 filed (hygiene file scan fails on Visual Studio's `.vs/` cache, not ignored); commit 701702b; `main` fast-forwarded 40665e7→701702b and pushed; local `F1-VersionOne` deleted | — |
+| 91 | team-lead | close | `origin/F1-VersionOne` (b0c4d43) found on GitHub — pushed from this checkout at 21:26 local, not by this session or a subagent (no detector line); left in place for the owner | — |
