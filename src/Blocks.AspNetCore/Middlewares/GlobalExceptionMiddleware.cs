@@ -19,7 +19,6 @@ public sealed class GlobalExceptionMiddleware(RequestDelegate _next, ILogger<Glo
     private static HttpStatusCode MapStatusCode(Exception ex) => ex switch
     {
         ValidationException => HttpStatusCode.BadRequest,
-        ArgumentException => HttpStatusCode.BadRequest,
         BadRequestException => HttpStatusCode.BadRequest,
         NotFoundException => HttpStatusCode.NotFound,
         DomainException => HttpStatusCode.BadRequest,
@@ -42,6 +41,10 @@ public sealed class GlobalExceptionMiddleware(RequestDelegate _next, ILogger<Glo
             if (!context.Response.HasStarted)
                 context.Response.StatusCode = 499;
         }
+        catch (Exception ex) when (context.Response.HasStarted)
+        {
+            AbortStartedResponse(context, ex);
+        }
         catch (ValidationException ex)
         {
             await HandleValidationExceptionAsync(context, ex);
@@ -60,6 +63,13 @@ public sealed class GlobalExceptionMiddleware(RequestDelegate _next, ILogger<Glo
                 return true;
         }
         return false;
+    }
+
+    private void AbortStartedResponse(HttpContext context, Exception exception)
+    {
+        var level = MapStatusCode(exception) >= HttpStatusCode.InternalServerError ? LogLevel.Error : LogLevel.Warning;
+        _logger.Log(level, exception, "Error after the response started; connection aborted. TraceId={TraceId}", context.TraceIdentifier);
+        context.Abort();
     }
 
     private Task HandleExceptionAsync(HttpContext context, Exception exception)
@@ -85,18 +95,12 @@ public sealed class GlobalExceptionMiddleware(RequestDelegate _next, ILogger<Glo
 
     private Task HandleValidationExceptionAsync(HttpContext context, ValidationException exception)
     {
-        var validationErrors = exception.Errors.Select(e => new
-        {
-            e.PropertyName,
-            e.ErrorMessage
-        });
-
         var response = new
         {
             StatusCode = (int)HttpStatusCode.BadRequest,
             Message = "One or more validation errors occurred.",
             TraceId = context.TraceIdentifier,
-            Errors = validationErrors,
+            Errors = exception.Errors.ToFieldMap(JsonNamingPolicy.CamelCase),
             Details = _env.IsDevelopment() ? exception.StackTrace : null
         };
 

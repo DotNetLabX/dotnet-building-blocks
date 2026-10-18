@@ -40,8 +40,8 @@
     <PackageVersion Include="Refit.HttpClientFactory" Version="8.0.0" />
     <PackageVersion Include="Refit.Newtonsoft.Json" Version="8.0.0" />
     <!-- Transitive pins: Blocks names the blocks whose dependency graph needs each -->
-    <PackageVersion Include="protobuf-net" Version="3.2.56" Blocks="Blocks.AspNetCore;Blocks.FastEndpoints" />
-    <PackageVersion Include="protobuf-net.Core" Version="3.2.56" Blocks="Blocks.AspNetCore;Blocks.FastEndpoints" />
+    <PackageVersion Include="protobuf-net" Version="3.2.56" Blocks="Blocks.Grpc" />
+    <PackageVersion Include="protobuf-net.Core" Version="3.2.56" Blocks="Blocks.Grpc" />
     <!-- Tools -->
     <PackageVersion Include="System.Reflection.MetadataLoadContext" Version="10.0.12" />
     <!-- Tests -->
@@ -52,5 +52,8 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="10.0.12" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Data.SqlClient" Version="7.1.1" />
+    <PackageVersion Include="Npgsql" Version="10.0.3" />
+    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
   </ItemGroup>
 </Project>

@@ -34,3 +34,24 @@ public abstract class AuditedEntityConfiguration<T, TKey> : EntityConfiguration<
             builder.Property<byte[]>("RowVersion").IsRowVersion();
     }
 }
+
+public abstract class AuditedEntityConfiguration<T, TKey, TUserId> : EntityConfiguration<T, TKey>
+    where T : class, IAggregateRoot<TKey, TUserId>
+    where TKey : struct
+    where TUserId : class
+{
+    protected virtual bool HasConcurrencyToken => false;
+
+    public override void Configure(EntityTypeBuilder<T> builder)
+    {
+        base.Configure(builder);
+
+        builder.Property(e => e.CreatedOn).IsRequired();
+        builder.Property(e => e.CreatedById).IsRequired();
+        builder.Property(e => e.LastModifiedOn);
+        builder.Property(e => e.LastModifiedById);
+
+        if (HasConcurrencyToken)
+            builder.Property<byte[]>("RowVersion").IsRowVersion();
+    }
+}

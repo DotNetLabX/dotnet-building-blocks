@@ -1,0 +1,1719 @@
+{
+  "format_version": 1,
+  "feature": "F3-GatewayFeedback",
+  "kind_of_run": "team run",
+  "state": "partial",
+  "started": "2026-10-11T07:17:44.274Z",
+  "closed": "2026-10-18T13:51:57.763Z",
+  "plugin_versions": [
+    "2.4.12",
+    "2.4.2",
+    "2.4.37"
+  ],
+  "claude_code_versions": [
+    "2.1.296",
+    "2.1.302"
+  ],
+  "spawns": [
+    {
+      "role": "architect",
+      "name": "architect-1",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "plugin_versions": [
+        "2.4.2",
+        "2.4.12",
+        "2.4.37"
+      ],
+      "claude_code_versions": [
+        "2.1.296",
+        "2.1.302"
+      ],
+      "calls": 154,
+      "tokens": {
+        "input": 312,
+        "cache_written_5m": 0,
+        "cache_written_1h": 1640017,
+        "cache_read": 39282212,
+        "output": 199134
+      },
+      "peak_context": 427406,
+      "compactions": 1,
+      "first_activity": "2026-10-11T07:17:44.274Z",
+      "last_activity": "2026-10-18T11:54:30.970Z",
+      "active_ms": 8030722
+    },
+    {
+      "role": "team-lead",
+      "name": "team-lead-1",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "plugin_versions": [
+        "2.4.37"
+      ],
+      "claude_code_versions": [
+        "2.1.302"
+      ],
+      "calls": 72,
+      "tokens": {
+        "input": 176,
+        "cache_written_5m": 0,
+        "cache_written_1h": 256072,
+        "cache_read": 15804485,
+        "output": 50576
+      },
+      "peak_context": 289687,
+      "compactions": 0,
+      "first_activity": "2026-10-18T11:51:19.547Z",
+      "last_activity": "2026-10-18T13:51:56.577Z",
+      "active_ms": 4207626
+    },
+    {
+      "role": "developer",
+      "name": "dev-s1",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "plugin_versions": [
+        "2.4.37"
+      ],
+      "claude_code_versions": [
+        "2.1.302"
+      ],
+      "calls": 69,
+      "tokens": {
+        "input": 146,
+        "cache_written_5m": 297116,
+        "cache_written_1h": 0,
+        "cache_read": 13243367,
+        "output": 100099
+      },
+      "peak_context": 297118,
+      "compactions": 0,
+      "first_activity": "2026-10-18T11:53:34.151Z",
+      "last_activity": "2026-10-18T12:22:12.991Z",
+      "active_ms": 1718840
+    },
+    {
+      "role": "developer",
+      "name": "dev-s2",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "plugin_versions": [
+        "2.4.37"
+      ],
+      "claude_code_versions": [
+        "2.1.302"
+      ],
+      "calls": 69,
+      "tokens": {
+        "input": 142,
+        "cache_written_5m": 247375,
+        "cache_written_1h": 0,
+        "cache_read": 13240965,
+        "output": 89314
+      },
+      "peak_context": 275596,
+      "compactions": 0,
+      "first_activity": "2026-10-18T12:22:27.878Z",
+      "last_activity": "2026-10-18T12:46:18.817Z",
+      "active_ms": 1430939
+    },
+    {
+      "role": "developer",
+      "name": "dev-s3",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "plugin_versions": [
+        "2.4.37"
+      ],
+      "claude_code_versions": [
+        "2.1.302"
+      ],
+      "calls": 113,
+      "tokens": {
+        "input": 234,
+        "cache_written_5m": 343157,
+        "cache_written_1h": 0,
+        "cache_read": 27031464,
+        "output": 143752
+      },
+      "peak_context": 371378,
+      "compactions": 0,
+      "first_activity": "2026-10-18T12:46:33.871Z",
+      "last_activity": "2026-10-18T13:32:43.384Z",
+      "active_ms": 2769513
+    },
+    {
+      "role": "architect",
+      "name": "architect-donecheck",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "plugin_versions": [
+        "2.4.37"
+      ],
+      "claude_code_versions": [
+        "2.1.302"
+      ],
+      "calls": 18,
+      "tokens": {
+        "input": 36,
+        "cache_written_5m": 214019,
+        "cache_written_1h": 0,
+        "cache_read": 3437124,
+        "output": 8735
+      },
+      "peak_context": 224551,
+      "compactions": 0,
+      "first_activity": "2026-10-18T13:35:09.307Z",
+      "last_activity": "2026-10-18T13:37:52.179Z",
+      "active_ms": 162872
+    },
+    {
+      "role": "reviewer",
+      "name": "reviewer-second",
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "plugin_versions": [
+        "2.4.37"
+      ],
+      "claude_code_versions": [
+        "2.1.302"
+      ],
+      "review_link": {
+        "kind": "code",
+        "round": 1
+      },
+      "calls": 47,
+      "tokens": {
+        "input": 94,
+        "cache_written_5m": 239461,
+        "cache_written_1h": 0,
+        "cache_read": 8785705,
+        "output": 44797
+      },
+      "peak_context": 239463,
+      "compactions": 0,
+      "first_activity": "2026-10-18T13:35:22.504Z",
+      "last_activity": "2026-10-18T13:43:05.737Z",
+      "active_ms": 463233
+    },
+    {
+      "role": "developer",
+      "name": "dev-fix-c1",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "plugin_versions": [
+        "2.4.37"
+      ],
+      "claude_code_versions": [
+        "2.1.302"
+      ],
+      "calls": 16,
+      "tokens": {
+        "input": 32,
+        "cache_written_5m": 134778,
+        "cache_written_1h": 0,
+        "cache_read": 1762289,
+        "output": 13114
+      },
+      "peak_context": 134780,
+      "compactions": 0,
+      "first_activity": "2026-10-18T13:43:41.021Z",
+      "last_activity": "2026-10-18T13:49:37.978Z",
+      "active_ms": 356957
+    },
+    {
+      "role": "reviewer",
+      "name": "reviewer-1",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "forwarder_model": "claude-opus-5-5",
+      "review_link": {
+        "kind": "code",
+        "round": 1
+      },
+      "plugin_versions": [
+        "2.4.37"
+      ],
+      "claude_code_versions": [
+        "2.1.302"
+      ],
+      "calls": 15,
+      "tokens": {
+        "input": 126219,
+        "cache_written": 0,
+        "cache_read": 1208192,
+        "output": 11740
+      },
+      "first_activity": "2026-10-18T13:35:19.883Z",
+      "last_activity": "2026-10-18T13:40:05.948Z",
+      "active_ms": 286065
+    },
+    {
+      "role": "critic",
+      "name": "spec-round-1",
+      "models": [
+        "model unknown"
+      ],
+      "review_link": {
+        "kind": "spec",
+        "round": 1
+      }
+    },
+    {
+      "role": "critic",
+      "name": "critic-1",
+      "models": [
+        "model unknown"
+      ],
+      "review_link": {
+        "kind": "spec",
+        "round": 1
+      }
+    },
+    {
+      "role": "critic",
+      "name": "spec-round-2",
+      "models": [
+        "model unknown"
+      ],
+      "review_link": {
+        "kind": "spec",
+        "round": 2
+      }
+    },
+    {
+      "role": "critic",
+      "name": "plan-round-1",
+      "models": [
+        "model unknown"
+      ],
+      "review_link": {
+        "kind": "plan",
+        "round": 1
+      }
+    },
+    {
+      "role": "critic",
+      "name": "critic-2",
+      "models": [
+        "model unknown"
+      ],
+      "review_link": {
+        "kind": "plan",
+        "round": 1
+      }
+    },
+    {
+      "role": "critic",
+      "name": "plan-round-2",
+      "models": [
+        "model unknown"
+      ],
+      "review_link": {
+        "kind": "plan",
+        "round": 2
+      }
+    }
+  ],
+  "plan_steps": {
+    "steps": [
+      {
+        "step": "1",
+        "spawns": [
+          "dev-s1"
+        ],
+        "tokens": {
+          "input": 22,
+          "cache_written_5m": 15470,
+          "cache_written_1h": 0,
+          "cache_read": 1622550,
+          "output": 10987
+        },
+        "active_ms": 179085
+      },
+      {
+        "step": "2",
+        "spawns": [
+          "dev-s1"
+        ],
+        "tokens": {
+          "input": 16,
+          "cache_written_5m": 25968,
+          "cache_written_1h": 0,
+          "cache_read": 1289617,
+          "output": 7499
+        },
+        "active_ms": 131459
+      },
+      {
+        "step": "3",
+        "spawns": [
+          "dev-s1"
+        ],
+        "tokens": {
+          "input": 16,
+          "cache_written_5m": 25919,
+          "cache_written_1h": 0,
+          "cache_read": 1473189,
+          "output": 7591
+        },
+        "active_ms": 129188
+      },
+      {
+        "step": "5",
+        "spawns": [
+          "dev-s2"
+        ],
+        "tokens": {
+          "input": 40,
+          "cache_written_5m": 125898,
+          "cache_written_1h": 0,
+          "cache_read": 2540786,
+          "output": 16559
+        },
+        "active_ms": 271535
+      },
+      {
+        "step": "6",
+        "spawns": [
+          "dev-s2"
+        ],
+        "tokens": {
+          "input": 62,
+          "cache_written_5m": 69787,
+          "cache_written_1h": 0,
+          "cache_read": 5846187,
+          "output": 45956
+        },
+        "active_ms": 663875
+      },
+      {
+        "step": "8",
+        "spawns": [
+          "dev-s3"
+        ],
+        "tokens": {
+          "input": 82,
+          "cache_written_5m": 169692,
+          "cache_written_1h": 0,
+          "cache_read": 6328749,
+          "output": 51758
+        },
+        "active_ms": 865444
+      },
+      {
+        "step": "9",
+        "spawns": [
+          "dev-s3"
+        ],
+        "tokens": {
+          "input": 26,
+          "cache_written_5m": 22525,
+          "cache_written_1h": 0,
+          "cache_read": 3211186,
+          "output": 16709
+        },
+        "active_ms": 815869
+      },
+      {
+        "step": "10",
+        "spawns": [
+          "dev-s3"
+        ],
+        "tokens": {
+          "input": 40,
+          "cache_written_5m": 33960,
+          "cache_written_1h": 0,
+          "cache_read": 5672193,
+          "output": 18747
+        },
+        "active_ms": 302525
+      }
+    ],
+    "before_first_step": {
+      "spawns": [
+        "dev-s1"
+      ],
+      "tokens": {
+        "input": 40,
+        "cache_written_5m": 153396,
+        "cache_written_1h": 0,
+        "cache_read": 2319097,
+        "output": 25146
+      },
+      "active_ms": 317194
+    },
+    "after_last_step": {
+      "spawns": [
+        "dev-fix-c1",
+        "dev-s1",
+        "dev-s2",
+        "dev-s3"
+      ],
+      "tokens": {
+        "input": 210,
+        "cache_written_5m": 379811,
+        "cache_written_1h": 0,
+        "cache_read": 24974531,
+        "output": 145327
+      },
+      "active_ms": 2600075
+    }
+  },
+  "review_rounds": {
+    "spec": [
+      {
+        "round": 1,
+        "readers": [
+          {
+            "name": "spec-round-1",
+            "models": [
+              "model unknown"
+            ]
+          },
+          {
+            "name": "critic-1",
+            "models": [
+              "model unknown"
+            ]
+          }
+        ]
+      },
+      {
+        "round": 2,
+        "readers": [
+          {
+            "name": "spec-round-2",
+            "models": [
+              "model unknown"
+            ]
+          }
+        ]
+      }
+    ],
+    "plan": [
+      {
+        "round": 1,
+        "readers": [
+          {
+            "name": "plan-round-1",
+            "models": [
+              "model unknown"
+            ]
+          },
+          {
+            "name": "critic-2",
+            "models": [
+              "model unknown"
+            ]
+          }
+        ]
+      },
+      {
+        "round": 2,
+        "readers": [
+          {
+            "name": "plan-round-2",
+            "models": [
+              "model unknown"
+            ]
+          }
+        ]
+      }
+    ],
+    "code": [
+      {
+        "round": 1,
+        "readers": [
+          {
+            "name": "reviewer-second",
+            "models": [
+              "claude-sonnet-5-5"
+            ]
+          },
+          {
+            "name": "reviewer-1",
+            "models": [
+              "gpt-6.1-sol"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "fix_cycles": 1,
+  "test_build_runs": {
+    "count": 281,
+    "total_duration_ms": 2048910,
+    "runs": [
+      {
+        "runner": "agent",
+        "duration_ms": 98429
+      },
+      {
+        "runner": "close",
+        "duration_ms": 82932
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 8810
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 29999
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4839
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4606
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3711
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 23213
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2489
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4841
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4255
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 24037
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4492
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4012
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4697
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4241
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4232
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4733
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5536
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4910
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4871
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2889
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2927
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2760
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2975
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4599
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4922
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5103
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4882
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3883
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4046
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4673
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3223
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4591
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4740
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4453
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5305
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5089
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2448
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4163
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4654
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4564
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4618
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4183
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4525
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4561
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5047
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5729
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4911
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5001
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4820
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4126
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3858
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3842
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3836
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3949
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4472
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4822
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4720
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4392
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3894
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3518
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3890
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3969
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4259
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3884
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4239
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3878
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4616
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4414
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4667
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4212
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3763
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4212
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4417
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4935
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3976
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4518
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3845
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4564
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3740
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3902
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4754
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4645
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3751
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4185
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 23827
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2808
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4697
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5641
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5270
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4936
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4647
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3924
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 25139
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4546
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3978
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4296
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4652
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4649
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2602
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4146
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4781
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 9473
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4343
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2945
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3053
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4912
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5768
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4196
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3748
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4344
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5028
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4834
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4897
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4568
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5103
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3833
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2554
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4124
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3755
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4189
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4122
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3888
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4563
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3976
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4334
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 24068
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4279
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3008
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3461
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 1248
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3099
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2986
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3031
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2492
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2590
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3195
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 1173
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2338
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2332
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2426
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2580
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2708
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3068
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 1433
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2815
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2412
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2793
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2581
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2533
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3097
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3034
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3111
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2900
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2460
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2827
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2605
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 8697
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 8190
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 50014
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 26555
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3957
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4153
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4345
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5102
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4569
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4218
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4598
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4805
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4464
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 2637
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4776
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4804
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4298
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4821
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4299
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5028
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4386
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5134
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4266
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5079
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4259
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4543
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4726
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4735
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5166
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4527
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4963
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4641
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4811
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4280
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4720
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4398
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4525
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4405
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4430
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4778
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4435
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4531
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4356
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4395
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4894
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4767
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5085
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4273
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4530
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4488
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4446
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4538
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4457
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4742
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4320
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4487
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4909
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4775
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4572
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 3933
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 24514
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4351
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 6456
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4938
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 11521
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 9892
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 10313
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 11991
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5134
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5849
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5014
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 15168
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5717
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 4928
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5264
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5171
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5202
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5324
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 8247
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 9724
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 9789
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 8384
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5971
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 7695
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 9271
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5734
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 10489
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5311
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 9841
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 10855
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 10723
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 10826
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 8166
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 13873
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 27075
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 24950
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 34301
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 11509
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 71911
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5299
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5540
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 5560
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 33535
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 6625
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 40600
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 11375
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 12024
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 12838
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 12362
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 9565
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 14828
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 10815
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 12065
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 11309
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 9770
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 29426
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 26070
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 950
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 559
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 455
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 7280
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 14902
+      },
+      {
+        "runner": "agent",
+        "duration_ms": 9126
+      }
+    ]
+  },
+  "owner_touches": {
+    "question_box_answered": 10,
+    "typed_message": 9
+  },
+  "completeness": {
+    "spawns": [
+      {
+        "name": "spec-round-1",
+        "reason": "out of reach"
+      },
+      {
+        "name": "critic-1",
+        "reason": "out of reach"
+      },
+      {
+        "name": "spec-round-2",
+        "reason": "out of reach"
+      },
+      {
+        "name": "plan-round-1",
+        "reason": "out of reach"
+      },
+      {
+        "name": "critic-2",
+        "reason": "out of reach"
+      },
+      {
+        "name": "plan-round-2",
+        "reason": "out of reach"
+      }
+    ],
+    "fields": []
+  },
+  "output_tokens_note": "output tokens are as the platform recorded them, which can fall short of what the model produced"
+}

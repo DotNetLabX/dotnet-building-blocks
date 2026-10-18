@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ProtoBuf.Grpc.Client;
 using ProtoBuf.Grpc.Configuration;
 
-namespace Blocks.AspNetCore.Grpc;
+namespace Blocks.Grpc;
 
 public static class GrpcClientRegistrationExtensions
 {

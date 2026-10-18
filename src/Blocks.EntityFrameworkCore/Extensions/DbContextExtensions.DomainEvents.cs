@@ -10,7 +10,7 @@ public static partial class DbContextExtensions
         var aggregates = ctx.ChangeTracker
             .Entries()
             .Select(a => a.Entity)
-            .OfType<IAggregateRoot>()
+            .OfType<IHasDomainEvents>()
             .Where(a => a.DomainEvents.Any())
             .ToList();
         

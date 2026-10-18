@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Text.Json;
 
@@ -44,37 +45,64 @@ public static class BuilderExtensions
     }
 
     public static ValueConverter<IReadOnlyList<T>, string> BuildJsonReadOnlyListConvertor<T>()
-    {
-        Func<IReadOnlyList<T>, string> serializeFunc = v => JsonSerializer.Serialize(v);
-        Func<string, IReadOnlyList<T>> deserializeFunc = v => JsonSerializer.Deserialize<IReadOnlyList<T>>(v ?? "[]")!;
+        => BuildJsonReadOnlyListConvertor<T>(JsonSerializerOptions.Default);
 
-        return new ValueConverter<IReadOnlyList<T>, string>(
-            v => serializeFunc(v),
-            v => deserializeFunc(v));
-    }
+    public static ValueConverter<IReadOnlyList<T>, string> BuildJsonReadOnlyListConvertor<T>(JsonSerializerOptions options)
+        => new(
+            v => Serialize(v, options),
+            v => DeserializeList<IReadOnlyList<T>>(v, options));
 
     public static ValueConverter<TCollection, string> BuildJsonListConvertor<TCollection>()
-    {
-        Func<TCollection, string> serializeFunc = v => JsonSerializer.Serialize(v);
-        Func<string, TCollection> deserializeFunc = v => JsonSerializer.Deserialize<TCollection>(v ?? "[]")!;
+        => BuildJsonListConvertor<TCollection>(JsonSerializerOptions.Default);
 
-        return new ValueConverter<TCollection, string>(
-            v => serializeFunc(v),
-            v => deserializeFunc(v));
-    }
+    public static ValueConverter<TCollection, string> BuildJsonListConvertor<TCollection>(JsonSerializerOptions options)
+        => new(
+            v => Serialize(v, options),
+            v => DeserializeList<TCollection>(v, options));
+
+    public static ValueComparer<T> BuildJsonValueComparer<T>()
+        => BuildJsonValueComparer<T>(JsonSerializerOptions.Default);
+
+    public static ValueComparer<T> BuildJsonValueComparer<T>(JsonSerializerOptions options)
+        => new(
+            (left, right) => Serialize(left, options) == Serialize(right, options),
+            v => Serialize(v, options).GetHashCode(),
+            v => Deserialize<T>(Serialize(v, options), options));
 
     public static PropertyBuilder<IReadOnlyList<T>> HasJsonReadOnlyListConversion<T>(this PropertyBuilder<IReadOnlyList<T>> builder)
-        => builder.HasConversion(BuildJsonReadOnlyListConvertor<T>());
+        => builder.HasJsonReadOnlyListConversion(JsonSerializerOptions.Default);
+
+    public static PropertyBuilder<IReadOnlyList<T>> HasJsonReadOnlyListConversion<T>(this PropertyBuilder<IReadOnlyList<T>> builder, JsonSerializerOptions options)
+        => builder.HasConversion(BuildJsonReadOnlyListConvertor<T>(options), BuildJsonValueComparer<IReadOnlyList<T>>(options));
 
     public static PropertyBuilder<T> HasJsonCollectionConversion<T>(this PropertyBuilder<T> builder)
-        => builder.HasConversion(BuildJsonListConvertor<T>());
+        => builder.HasJsonCollectionConversion(JsonSerializerOptions.Default);
+
+    public static PropertyBuilder<T> HasJsonCollectionConversion<T>(this PropertyBuilder<T> builder, JsonSerializerOptions options)
+        => builder.HasConversion(BuildJsonListConvertor<T>(options), BuildJsonValueComparer<T>(options));
 
     public static ComplexTypePropertyBuilder<T> HasJsonListConversion<T>(this ComplexTypePropertyBuilder<T> builder)
-        => builder.HasConversion(BuildJsonReadOnlyListConvertor<T>());
+        => builder.HasJsonListConversion(JsonSerializerOptions.Default);
+
+    public static ComplexTypePropertyBuilder<T> HasJsonListConversion<T>(this ComplexTypePropertyBuilder<T> builder, JsonSerializerOptions options)
+        => builder.HasConversion(BuildJsonListConvertor<T>(options), BuildJsonValueComparer<T>(options));
 
     public static PropertyBuilder<TCollection> HasJsonListConversion<TCollection, T>(this PropertyBuilder<TCollection> builder)
         where TCollection : IList<T>
-        => builder.HasConversion(BuildJsonListConvertor<TCollection>());
+        => builder.HasJsonListConversion<TCollection, T>(JsonSerializerOptions.Default);
+
+    public static PropertyBuilder<TCollection> HasJsonListConversion<TCollection, T>(this PropertyBuilder<TCollection> builder, JsonSerializerOptions options)
+        where TCollection : IList<T>
+        => builder.HasConversion(BuildJsonListConvertor<TCollection>(options), BuildJsonValueComparer<TCollection>(options));
+
+    private static string Serialize<T>(T value, JsonSerializerOptions options)
+        => JsonSerializer.Serialize(value, options);
+
+    private static T Deserialize<T>(string json, JsonSerializerOptions options)
+        => JsonSerializer.Deserialize<T>(json, options)!;
+
+    private static T DeserializeList<T>(string? json, JsonSerializerOptions options)
+        => Deserialize<T>(json ?? "[]", options);
 
     public static PropertyBuilder<TProperty> HasColumnNameSameAsProperty<TProperty>(this PropertyBuilder<TProperty> builder)
         => builder.HasColumnName(builder.Metadata.PropertyInfo?.Name);

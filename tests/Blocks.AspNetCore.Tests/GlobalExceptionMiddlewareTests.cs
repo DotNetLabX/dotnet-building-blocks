@@ -16,7 +16,7 @@ public sealed class GlobalExceptionMiddlewareTests
 {
     public static TheoryData<string, int> StatusPerType => new()
     {
-        { nameof(ArgumentException), 400 },
+        { nameof(ArgumentException), 500 },
         { nameof(BadRequestException), 400 },
         { nameof(DomainException), 400 },
         { nameof(UnauthorizedException), 401 },
@@ -133,6 +133,48 @@ public sealed class GlobalExceptionMiddlewareTests
     }
 
     [Fact]
+    public async Task CancellationAfterTheResponseStarted_IsNotLoggedNorAborted()
+    {
+        var logs = new CapturedLogs();
+        var lifetime = new RecordingLifetime(cancelled: true);
+
+        var reply = await ErrorMapperHost.SendAsync(
+            StartThenThrow(new InvalidOperationException("outer", new OperationCanceledException())), logs: logs, lifetime: lifetime);
+
+        reply.Status.Should().Be(HttpStatusCode.Accepted);
+        reply.Body.Should().Be("partial");
+        HandlerEntries(logs).Should().BeEmpty();
+        lifetime.AbortCount.Should().Be(0);
+        lifetime.Escaped.Should().BeNull();
+    }
+
+    public static TheoryData<string, LogLevel> LevelAfterTheResponseStarted => new()
+    {
+        { nameof(NotFoundException), LogLevel.Warning },
+        { nameof(InvalidOperationException), LogLevel.Error },
+        { nameof(ValidationException), LogLevel.Warning },
+    };
+
+    [Theory]
+    [MemberData(nameof(LevelAfterTheResponseStarted))]
+    public async Task ErrorAfterTheResponseStarted_IsLoggedAndAbortsTheConnection(string type, LogLevel level)
+    {
+        var logs = new CapturedLogs();
+        var lifetime = new RecordingLifetime(cancelled: false);
+        var thrown = type == nameof(ValidationException) ? Invalid() : Create(type);
+
+        var reply = await ErrorMapperHost.SendAsync(StartThenThrow(thrown), logs: logs, lifetime: lifetime);
+
+        reply.Status.Should().Be(HttpStatusCode.Accepted);
+        reply.Body.Should().Be("partial");
+        var entry = HandlerEntries(logs).Should().ContainSingle().Subject;
+        entry.Level.Should().Be(level);
+        entry.Exception.Should().BeSameAs(thrown);
+        lifetime.AbortCount.Should().Be(1);
+        lifetime.Escaped.Should().BeNull();
+    }
+
+    [Fact]
     public async Task ServerErrorOutsideDevelopment_CarriesTheFixedTextOnly()
     {
         var reply = await ErrorMapperHost.SendAsync(new InvalidOperationException("connection string leaked"));
@@ -141,6 +183,20 @@ public sealed class GlobalExceptionMiddlewareTests
         reply.Json.GetProperty("message").GetString().Should().Be("An unexpected error occurred.");
         reply.Body.Should().NotContain("connection string leaked");
         reply.Json.GetProperty("details").ValueKind.Should().Be(JsonValueKind.Null);
+    }
+
+    [Fact]
+    public async Task ArgumentErrorOutsideDevelopment_IsAServerErrorAndLogged()
+    {
+        var logs = new CapturedLogs();
+        var thrown = new ArgumentNullException("orderId", "argument detail");
+
+        var reply = await ErrorMapperHost.SendAsync(thrown, logs: logs);
+
+        reply.Status.Should().Be(HttpStatusCode.InternalServerError);
+        reply.Json.GetProperty("message").GetString().Should().Be("An unexpected error occurred.");
+        reply.Body.Should().NotContain("argument detail");
+        HandlerEntries(logs).Should().ContainSingle(e => e.Level == LogLevel.Error && e.Exception == thrown);
     }
 
     [Fact]
@@ -186,15 +242,34 @@ public sealed class GlobalExceptionMiddlewareTests
         var reply = await ErrorMapperHost.SendAsync(Invalid());
 
         PropertyNames(reply.Json).Should().Equal("statusCode", "message", "traceId", "errors", "details");
-        var errors = reply.Json.GetProperty("errors").EnumerateArray().ToList();
-        errors.Should().HaveCount(2);
-        PropertyNames(errors[0]).Should().Equal("propertyName", "errorMessage");
-        errors[0].GetProperty("propertyName").GetString().Should().Be("Name");
-        errors[1].GetProperty("errorMessage").GetString().Should().Be("'Email' is not a valid email address.");
+        var errors = reply.Json.GetProperty("errors");
+        PropertyNames(errors).Should().Equal("name", "email");
+        errors.GetProperty("name").EnumerateArray().Select(m => m.GetString()).Should().Equal("'Name' must not be empty.");
+        errors.GetProperty("email").EnumerateArray().Select(m => m.GetString()).Should().Equal("'Email' is not a valid email address.");
+    }
+
+    [Fact]
+    public async Task HostAddingTheHandlerByTheExtension_AnswersTheMappedStatus()
+    {
+        var reply = await ErrorMapperHost.SendAsync(_ => throw new NotFoundException("missing"), viaExtension: true);
+
+        reply.Status.Should().Be(HttpStatusCode.NotFound);
+        reply.Json.GetProperty("message").GetString().Should().Be("missing");
     }
 
     private static List<string> PropertyNames(JsonElement element)
         => element.EnumerateObject().Select(property => property.Name).ToList();
+
+    private static List<CapturedLog> HandlerEntries(CapturedLogs logs)
+        => logs.Entries.Where(e => e.Category.EndsWith(nameof(GlobalExceptionMiddleware), StringComparison.Ordinal)).ToList();
+
+    private static RequestDelegate StartThenThrow(Exception thrown) => async context =>
+    {
+        context.Response.StatusCode = 202;
+        await context.Response.WriteAsync("partial", CancellationToken.None);
+        await context.Response.Body.FlushAsync(CancellationToken.None);
+        throw thrown;
+    };
 
     private sealed class TeapotException() : HttpException((HttpStatusCode)418, "short and stout");
 

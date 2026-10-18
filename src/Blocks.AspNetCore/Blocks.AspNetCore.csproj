@@ -11,11 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.Net.Client" />
-    <PackageReference Include="protobuf-net.Grpc" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Blocks.Domain\Blocks.Domain.csproj" />
     <ProjectReference Include="..\Blocks.Exceptions\Blocks.Exceptions.csproj" />
     <ProjectReference Include="..\Blocks.Core\Blocks.Core.csproj" />

@@ -90,8 +90,17 @@ public abstract class RepositoryBase<TContext, TEntity, TKey>
 
     public virtual void RemoveRange(IEnumerable<TEntity> entities) => _entity.RemoveRange(entities);
 
-    public virtual Task<int> SaveChangesAsync(CancellationToken ct = default)
-        => _dbContext.SaveChangesAsync(ct);
+    public virtual async Task<int> SaveChangesAsync(CancellationToken ct = default)
+    {
+        try
+        {
+            return await _dbContext.SaveChangesAsync(ct);
+        }
+        catch (DbUpdateException ex) when (ex.IsDuplicateValue())
+        {
+            throw ex.ToConflict();
+        }
+    }
 
     public virtual void ClearTracking() => _dbContext.ChangeTracker.Clear();
 

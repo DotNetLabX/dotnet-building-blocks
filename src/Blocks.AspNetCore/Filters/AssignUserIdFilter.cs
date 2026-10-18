@@ -16,6 +16,12 @@ public sealed class AssignUserIdFilter(IClaimsProvider _claimsProvider) : IEndpo
                 if (userId is not null)
                     action.CreatedById = userId.Value;
             }
+            else if (arg is IAuditableRequest request and not IAuditableAction)
+            {
+                var userId = _claimsProvider.TryGetUserIdText();
+                if (userId is not null)
+                    request.TryAssignCreatedBy(userId, keepExisting: true);
+            }
         }
         return await next(ctx);
     }

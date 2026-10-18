@@ -11,8 +11,8 @@ public sealed partial class NamingTests
     private static readonly string[] BlockAssemblies =
     [
         "Blocks.AspNetCore", "Blocks.Core", "Blocks.Domain", "Blocks.EntityFrameworkCore", "Blocks.Exceptions",
-        "Blocks.FastEndpoints", "Blocks.Hasura", "Blocks.Http.Abstractions", "Blocks.MediatR", "Blocks.Messaging",
-        "Blocks.Redis",
+        "Blocks.FastEndpoints", "Blocks.Grpc", "Blocks.Hasura", "Blocks.Http.Abstractions", "Blocks.MediatR",
+        "Blocks.Messaging", "Blocks.Redis",
     ];
 
     private static readonly HashSet<string> FrameworkFixedNames = new(StringComparer.Ordinal) { "Handle", "Consume", "Invoke" };

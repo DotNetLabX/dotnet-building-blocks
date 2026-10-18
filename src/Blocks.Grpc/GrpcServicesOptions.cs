@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Blocks.AspNetCore.Grpc;
+namespace Blocks.Grpc;
 
 public class GrpcServicesOptions
 {

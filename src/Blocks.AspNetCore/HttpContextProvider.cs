@@ -28,6 +28,8 @@ public class HttpContextProvider(IHttpContextAccessor _httpContextAccessor)
         => TryGetUserId() ?? throw new UnauthorizedAccessException($"Missing claim: {ClaimTypes.NameIdentifier}.");
     public int? TryGetUserId()
         => TryGetClaimValue(ClaimTypes.NameIdentifier)?.ToInt();
+    public string? TryGetUserIdText()
+        => TryGetClaimValue(ClaimTypes.NameIdentifier);
     public string GetUserName()
         => GetClaimValue(ClaimTypes.Name);    
     public string GetUserEmail() 

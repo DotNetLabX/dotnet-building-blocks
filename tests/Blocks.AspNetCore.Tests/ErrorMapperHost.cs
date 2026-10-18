@@ -23,8 +23,15 @@ internal static class ErrorMapperHost
         => SendAsync(_ => throw thrown, environment, logs, clientAborted);
 
     public static async Task<ErrorReply> SendAsync(
-        RequestDelegate endpoint, string environment = "Production", CapturedLogs? logs = null, bool clientAborted = false)
+        RequestDelegate endpoint,
+        string environment = "Production",
+        CapturedLogs? logs = null,
+        bool clientAborted = false,
+        RecordingLifetime? lifetime = null,
+        bool viaExtension = false)
     {
+        lifetime ??= clientAborted ? new RecordingLifetime(cancelled: true) : null;
+
         using var host = await new HostBuilder()
             .ConfigureLogging(logging =>
             {
@@ -36,16 +43,26 @@ internal static class ErrorMapperHost
                 .UseEnvironment(environment)
                 .Configure(app =>
                 {
-                    if (clientAborted)
+                    if (lifetime is not null)
                     {
-                        app.Use((context, next) =>
+                        app.Use(async (context, next) =>
                         {
-                            context.Features.Set<IHttpRequestLifetimeFeature>(new AbortedRequest());
-                            return next(context);
+                            context.Features.Set<IHttpRequestLifetimeFeature>(lifetime);
+                            try
+                            {
+                                await next(context);
+                            }
+                            catch (Exception escaped)
+                            {
+                                lifetime.Escaped = escaped;
+                            }
                         });
                     }
 
-                    app.UseMiddleware<GlobalExceptionMiddleware>();
+                    if (viaExtension)
+                        app.UseGlobalExceptionMiddleware();
+                    else
+                        app.UseMiddleware<GlobalExceptionMiddleware>();
                     app.Run(endpoint);
                 }))
             .StartAsync(TestContext.Current.CancellationToken);
@@ -57,13 +74,17 @@ internal static class ErrorMapperHost
     }
 }
 
-internal sealed class AbortedRequest : IHttpRequestLifetimeFeature
+internal sealed class RecordingLifetime(bool cancelled) : IHttpRequestLifetimeFeature
 {
-    public CancellationToken RequestAborted { get; set; } = new(canceled: true);
+    private int _abortCount;
 
-    public void Abort()
-    {
-    }
+    public CancellationToken RequestAborted { get; set; } = new(canceled: cancelled);
+
+    public int AbortCount => _abortCount;
+
+    public Exception? Escaped { get; set; }
+
+    public void Abort() => Interlocked.Increment(ref _abortCount);
 }
 
 internal sealed record CapturedLog(string Category, LogLevel Level, Exception? Exception);

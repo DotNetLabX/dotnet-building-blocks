@@ -4,11 +4,16 @@
 
 General helpers with no web or database dependency:
 
-- Options binding that fails at start-up: `AddAndValidateOptions<T>`, `ConfigureOptionsFromSection<T>`,
-  `GetSectionByTypeName<T>`, `GetConnectionStringOrThrow` (the section is named after the type).
+- Options binding (the section is named after the type). `AddAndValidateOptions<T>` binds the section and checks
+  its data-annotation attributes (`[Required]`, `[Range]`, …) when the app starts. `ConfigureOptionsFromSection<T>`
+  and `GetSectionByTypeName<T>` bind without those checks, but refuse a missing section.
+  Only AddAndValidateOptions checks attributes at start-up. Even there, a nested class or a list is checked only
+  when its member carries `[ValidateObjectMembers]` or `[ValidateEnumeratedItems]`. `GetConnectionStringOrThrow`
+  refuses a missing or empty connection string.
 - Guards: `Guard` (`NotFound`, `AgainstNull`, `ThrowIfFalse`, …) and `OrThrowNotFound()`.
 - Caching: `IThreadSafeMemoryCache` / `ThreadSafeMemoryCache`, `ICacheable`, type-keyed `IMemoryCache` helpers.
-- Identity contract: `IClaimsProvider` (implemented by `Blocks.AspNetCore`), `JwtOptions`,
+- Identity contract: `IClaimsProvider` (implemented by `Blocks.AspNetCore`; `TryGetUserIdText` and
+  `GetUserIdText` give the caller's id as text, and by default format the `int` id), `JwtOptions`,
   `Base64UrlTokenGenerator`.
 - `RequestContext` — the per-request correlation id, remote address and start time.
 - Extensions for strings, enums, dates, JSON, reflection, assemblies and regular expressions;

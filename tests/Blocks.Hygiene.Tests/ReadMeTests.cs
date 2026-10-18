@@ -14,7 +14,7 @@ public sealed class ReadMeTests
     public void EveryBlock_HasAReadMeWithTheThreeHeadings()
     {
         var blocks = Directory.EnumerateDirectories(Path.Combine(RepoFiles.Root, "src"), "Blocks.*").ToList();
-        blocks.Should().HaveCount(11);
+        blocks.Should().HaveCount(12);
 
         var missing = blocks
             .SelectMany(block => MissingHeadings(Path.Combine(block, "README.md")).Select(heading => $"{Path.GetFileName(block)}: {heading}"))
@@ -39,6 +39,70 @@ public sealed class ReadMeTests
 
         words.Should().Contain("blocks.json").And.Contain("-- forward").And.Contain("-- back").And.Contain("-- status")
             .And.Contain("--adopt").And.Contain(WayOut);
+    }
+
+    public static TheoryData<string, string[], string[]> ReadMeStatements => new()
+    {
+        {
+            "src/Blocks.AspNetCore/README.md",
+            [
+                "An argument error is a fault in the code and answers 500.",
+                "A nested field name has every part lower-cased: Address.Street becomes address.street.",
+                "UseGlobalExceptionMiddleware",
+            ],
+            ["400 for validation, argument,", "AddCodeFirstGrpcClient"]
+        },
+        {
+            "src/Blocks.FastEndpoints/README.md",
+            [
+                "UseEnumsAsText",
+                "UseFieldMapValidationReply",
+                "A nested field name has every part lower-cased: Address.Street becomes address.street.",
+            ],
+            ["protobuf"]
+        },
+        {
+            "src/Blocks.Domain/README.md",
+            ["The who-type of the two-type forms is a reference type, such as string.", "IAuditableActionBy"],
+            []
+        },
+        {
+            "src/Blocks.MediatR/README.md",
+            ["The behaviour replaces the caller's id whenever a claim is present, for int and who-typed commands alike."],
+            []
+        },
+        {
+            "src/Blocks.EntityFrameworkCore/README.md",
+            ["Add your own database provider and design package.", "MigrateAsync", "A duplicate unique value on SQL Server or PostgreSQL answers 409"],
+            []
+        },
+        {
+            "src/Blocks.Core/README.md",
+            ["Only AddAndValidateOptions checks attributes at start-up.", "ValidateObjectMembers", "ValidateEnumeratedItems"],
+            ["Options binding that fails at start-up: `AddAndValidateOptions<T>`, `ConfigureOptionsFromSection<T>`"]
+        },
+        {
+            "src/Blocks.Grpc/README.md",
+            ["GetSectionByTypeName", "The service URL and the retry bounds are not checked at start-up."],
+            []
+        },
+        {
+            "README.md",
+            ["`Blocks.Grpc`"],
+            ["gRPC client registration"]
+        },
+    };
+
+    [Theory]
+    [MemberData(nameof(ReadMeStatements))]
+    public void EachReadMe_SaysWhatTheBlocksDoNow(string readMe, string[] mustHold, string[] mustNoLongerHold)
+    {
+        var text = RepoFiles.Text(Path.Combine(RepoFiles.Root, readMe)).ReplaceLineEndings(" ");
+        var words = string.Join(' ', text.Split(' ', StringSplitOptions.RemoveEmptyEntries));
+
+        words.Should().ContainAll(mustHold);
+        foreach (var stale in mustNoLongerHold)
+            words.Should().NotContain(stale);
     }
 
     private static IEnumerable<string> MissingHeadings(string readMe)

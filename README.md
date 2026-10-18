@@ -24,7 +24,7 @@ app never reached the others. This repo is their one home.
 | `Blocks.Core` | options binding, guards, a thread-safe memory cache, the request context, general extensions |
 | `Blocks.Exceptions` | HTTP error types, each with its status code, and `SingleOrThrow` |
 | `Blocks.Domain` | entity, aggregate and domain-event base types |
-| `Blocks.AspNetCore` | the error mapper, request diagnostics, claims and route providers, gRPC client registration |
+| `Blocks.AspNetCore` | the error mapper, request diagnostics, claims and route providers |
 | `Blocks.EntityFrameworkCore` | repositories, entity configurations, interceptors, transactions, seeding |
 | `Blocks.FastEndpoints` | the FastEndpoints domain-event publisher and pre-processors |
 | `Blocks.MediatR` | MediatR pipeline behaviors |
@@ -32,6 +32,7 @@ app never reached the others. This repo is their one home.
 | `Blocks.Redis` | a Redis OM repository and seeding |
 | `Blocks.Http.Abstractions` | small helpers over the ASP.NET Core HTTP abstractions |
 | `Blocks.Hasura` | Hasura GraphQL and metadata clients |
+| `Blocks.Grpc` | code-first gRPC clients and their settings |
 
 Each block's folder under `src/` has a `README.md` with its purpose, its dependencies and how to register it. Tests
 live under `tests/` and are never copied into an app. Package versions live in `Directory.Packages.props`.

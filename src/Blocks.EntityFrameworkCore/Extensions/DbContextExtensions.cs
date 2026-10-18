@@ -25,4 +25,15 @@ public static partial class DbContextExtensions
         context.Database.Migrate();
         return app;
     }
+
+    public static async Task<IHost> MigrateAsync<TDbContext>(this IHost app, CancellationToken ct = default)
+        where TDbContext : DbContext
+    {
+        await using var scope = app.Services.CreateAsyncScope();
+
+        var context = scope.ServiceProvider.GetRequiredService<TDbContext>();
+
+        await context.Database.MigrateAsync(ct);
+        return app;
+    }
 }

@@ -20,4 +20,28 @@ public class ApplicationDbContext<TDbContext>(DbContextOptions<TDbContext> _opti
     public virtual IEnumerable<TDestination> GetAllCached<TEntity, TDestination>()
         where TEntity : class, ICacheable
         => _cache.GetOrCreateByType(entry => this.Set<TEntity>().AsNoTracking().ProjectToType<TDestination>().ToList());
+
+    public override int SaveChanges(bool acceptAllChangesOnSuccess)
+    {
+        try
+        {
+            return base.SaveChanges(acceptAllChangesOnSuccess);
+        }
+        catch (DbUpdateException ex) when (ex.IsDuplicateValue())
+        {
+            throw ex.ToConflict();
+        }
+    }
+
+    public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+        catch (DbUpdateException ex) when (ex.IsDuplicateValue())
+        {
+            throw ex.ToConflict();
+        }
+    }
 }

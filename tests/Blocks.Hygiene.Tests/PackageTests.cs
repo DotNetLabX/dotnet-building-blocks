@@ -10,10 +10,15 @@ public sealed class PackageTests
 {
     private static readonly HashSet<string> AllowedExpressions = new(StringComparer.OrdinalIgnoreCase)
     {
-        "MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "MS-PL",
+        "MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "MS-PL", "PostgreSQL",
     };
 
     private static readonly HashSet<string> AllowedLicenceUrls = new(StringComparer.OrdinalIgnoreCase);
+
+    private static readonly HashSet<string> TestOnlyPackagesWithFileLicence = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "Microsoft.Data.SqlClient.SNI.runtime",
+    };
 
     [Fact]
     public void PackageVersions_StayOnTheFreeReleases()
@@ -39,7 +44,7 @@ public sealed class PackageTests
         var packagesFolder = GlobalPackagesFolder();
         var refused = ResolvedPackages()
             .Select(p => (Package: p, Licence: Licence(Path.Combine(packagesFolder, p.Id.ToLowerInvariant(), p.Version.ToLowerInvariant(), $"{p.Id.ToLowerInvariant()}.nuspec"))))
-            .Where(p => !Allowed(p.Licence))
+            .Where(p => !Allowed(p.Licence) && !AllowedAsTestOnly(p.Package, p.Licence))
             .Select(p => $"{p.Package.Id} {p.Package.Version}: {p.Licence}")
             .Order(StringComparer.Ordinal);
 
@@ -77,6 +82,11 @@ public sealed class PackageTests
         return alternatives.Any(AllowedExpressions.Contains);
     }
 
+    private static bool AllowedAsTestOnly((string Id, string Version, bool InBlock) package, string licence)
+        => !package.InBlock
+            && licence.StartsWith("file ", StringComparison.Ordinal)
+            && TestOnlyPackagesWithFileLicence.Contains(package.Id);
+
     private static string Licence(string nuspec)
     {
         if (!File.Exists(nuspec))
@@ -91,16 +101,21 @@ public sealed class PackageTests
         return url is null ? "no licence" : $"url {url.Value.Trim()}";
     }
 
-    private static List<(string Id, string Version)> ResolvedPackages()
+    private static List<(string Id, string Version, bool InBlock)> ResolvedPackages()
     {
         using var report = JsonDocument.Parse(Dotnet("list", Path.Combine(RepoFiles.Root, "Blocks.slnx"), "package", "--include-transitive", "--format", "json"));
         return report.RootElement.GetProperty("projects").EnumerateArray()
             .Where(project => project.TryGetProperty("frameworks", out _))
-            .SelectMany(project => project.GetProperty("frameworks").EnumerateArray())
-            .SelectMany(framework => Packages(framework, "topLevelPackages").Concat(Packages(framework, "transitivePackages")))
+            .SelectMany(project => project.GetProperty("frameworks").EnumerateArray()
+                .SelectMany(framework => Packages(framework, "topLevelPackages").Concat(Packages(framework, "transitivePackages")))
+                .Select(package => (package.Id, package.Version, InBlock: IsBlockProject(project))))
             .Distinct()
             .ToList();
     }
+
+    private static bool IsBlockProject(JsonElement project)
+        => Path.GetRelativePath(RepoFiles.Root, project.GetProperty("path").GetString()!)
+            .StartsWith("src" + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase);
 
     private static IEnumerable<(string Id, string Version)> Packages(JsonElement framework, string kind)
         => framework.TryGetProperty(kind, out var packages)

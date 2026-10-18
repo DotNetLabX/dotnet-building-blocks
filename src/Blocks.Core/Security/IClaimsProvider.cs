@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Blocks.Core.Security;
 
 public interface IClaimsProvider
@@ -11,8 +13,11 @@ public interface IClaimsProvider
     public string GetUserEmail();
     public string GetUserName();
 
+    public string? TryGetUserIdText() => TryGetUserId()?.ToString(CultureInfo.InvariantCulture);
+    public string GetUserIdText() => TryGetUserIdText() ?? throw new UnauthorizedAccessException("Missing user id claim.");
+
     IReadOnlySet<TEnum> GetUserRoles<TEnum>()
         where TEnum : struct, Enum;
-    
+
     IReadOnlySet<string> GetUserRoles();
 }
