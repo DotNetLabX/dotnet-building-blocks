@@ -58,6 +58,17 @@ public sealed class SignUpEndpoint : Endpoint<SignUpRequest>
     public override Task HandleAsync(SignUpRequest req, CancellationToken ct) => Send.NoContentAsync(ct);
 }
 
+public sealed class ConfiguredHeader : IGlobalPreProcessor
+{
+    public const string Name = "X-Configured";
+
+    public Task PreProcessAsync(IPreProcessorContext context, CancellationToken ct)
+    {
+        context.HttpContext.Response.Headers[Name] = "yes";
+        return Task.CompletedTask;
+    }
+}
+
 public static class SignUpMessages
 {
     public const string NameRequired = "Name is required.";

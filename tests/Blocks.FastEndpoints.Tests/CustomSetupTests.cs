@@ -1,7 +1,9 @@
 using System.Net;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 using AwesomeAssertions;
+using Microsoft.AspNetCore.Builder;
 using Xunit;
 
 namespace Blocks.FastEndpoints.Tests;
@@ -54,6 +56,56 @@ public sealed class CustomSetupTests(EndpointHost host)
         reply.GetProperty("message").GetString().Should().Be(SignUpMessages.EmailWithoutAt);
         PropertyNames(reply.GetProperty("errors")).Should().Equal("email");
     }
+
+    [Fact]
+    public async Task TheCallersConfiguration_RunsAfterTheBlocks_AndThePrefixStaysApi()
+    {
+        using var client = host.CreateClient();
+
+        using var prefixed = await PostRawAsync(client, "/api/sign-up", ValidSignUp);
+        using var bare = await PostRawAsync(client, "/sign-up", ValidSignUp);
+
+        host.CallersConfigurationSawTheBlocksEnumSetting.Should().BeTrue();
+        prefixed.StatusCode.Should().Be(HttpStatusCode.NoContent);
+        prefixed.Headers.TryGetValues(ConfiguredHeader.Name, out var values).Should().BeTrue();
+        values.Should().Equal("yes");
+        bare.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
+
+    [Fact]
+    public async Task ABodyWhoseNamesDifferInCase_Binds()
+    {
+        using var client = host.CreateClient();
+
+        using var response = await PostRawAsync(client, "/api/sign-up", """{"NAME":"Ann","EMAIL":"ann@example.com","ADDRESS":{"STREET":"Main"}}""");
+
+        response.StatusCode.Should().Be(HttpStatusCode.NoContent);
+    }
+
+    [Fact]
+    public async Task AMalformedBody_Answers400_WithTheSerializerErrorsKeyAndItsTextAsTheMessage()
+    {
+        using var client = host.CreateClient();
+
+        using var response = await PostRawAsync(client, "/api/sign-up", "{not json");
+
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        var reply = JsonDocument.Parse(await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken)).RootElement;
+        reply.GetProperty("statusCode").GetInt32().Should().Be(400);
+        var errors = reply.GetProperty("errors");
+        PropertyNames(errors).Should().Equal("serializerErrors");
+        var parserText = Messages(errors, "serializerErrors").Should().ContainSingle().Subject;
+        parserText.Should().NotBeNullOrWhiteSpace();
+        reply.GetProperty("message").GetString().Should().Be(parserText);
+    }
+
+    // Compiled, never called: keeps the call without a configuration delegate building.
+    internal static void NoArgumentCall_Compiles(IApplicationBuilder app) => app.UseCustomFastEndpoints();
+
+    private const string ValidSignUp = """{"name":"Ann","email":"ann@example.com","address":{"street":"Main"}}""";
+
+    private static Task<HttpResponseMessage> PostRawAsync(HttpClient client, string path, string json)
+        => client.PostAsync(path, new StringContent(json, Encoding.UTF8, "application/json"), TestContext.Current.CancellationToken);
 
     private async Task<(HttpStatusCode Status, JsonElement Reply)> SignUpAsync(object request)
     {

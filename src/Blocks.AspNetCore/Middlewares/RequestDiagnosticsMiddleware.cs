@@ -3,13 +3,20 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using System.Globalization;
 
 namespace Blocks.AspNetCore.Middlewares;
 
-public sealed class RequestDiagnosticsMiddleware(RequestDelegate _next, ILogger<RequestDiagnosticsMiddleware> _logger, IWebHostEnvironment _env)
-{    
+public sealed class RequestDiagnosticsMiddleware(
+    RequestDelegate _next,
+    ILogger<RequestDiagnosticsMiddleware> _logger,
+    IWebHostEnvironment _env,
+    IOptions<RequestDiagnosticsOptions> options)
+{
+    private readonly RequestDiagnosticsOptions _limits = options.Value;
+
     public async Task InvokeAsync(HttpContext ctx, RequestContext requestContext)
     {
         var correlationId = ctx.Items["X-Correlation-ID"] as string ?? ctx.TraceIdentifier;
@@ -40,8 +47,8 @@ public sealed class RequestDiagnosticsMiddleware(RequestDelegate _next, ILogger<
 
             var elapsedMs = sw.ElapsedMilliseconds;
 
-            var thresholdMs = requestContext.IsFileTransfer ? 3000 : 1000;
-            if (elapsedMs > thresholdMs)
+            var thresholdMs = requestContext.IsFileTransfer ? _limits.SlowFileTransferMs : _limits.SlowRequestMs;
+            if (elapsedMs > thresholdMs && !IsStreamed(ctx.Response))
             {
                 _logger.LogWarning("[PerfWarn] {Method} {Path} took {Elapsed} ms. (FileTransfer: {IsFileTransfer})",
                     ctx.Request.Method, ctx.Request.Path, elapsedMs, requestContext.IsFileTransfer);
@@ -51,4 +58,7 @@ public sealed class RequestDiagnosticsMiddleware(RequestDelegate _next, ILogger<
                 ctx.Request.Method, ctx.Request.Path, ctx.Response.StatusCode, elapsedMs, correlationId);
         }
     }
+
+    private static bool IsStreamed(HttpResponse response)
+        => response.ContentType?.StartsWith("text/event-stream", StringComparison.OrdinalIgnoreCase) ?? false;
 }

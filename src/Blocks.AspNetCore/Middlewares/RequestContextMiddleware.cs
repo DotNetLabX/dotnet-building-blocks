@@ -8,6 +8,7 @@ namespace Blocks.AspNetCore.Middlewares;
 public sealed class RequestContextMiddleware(RequestDelegate _next, ILogger<RequestContextMiddleware> _log)
 {
     private const string CorrelationIDHeader = "X-Correlation-ID";
+    private const int MaxCorrelationIdLength = 128;
 
     public async Task InvokeAsync(HttpContext httpContext, RequestContext requestContext)
     {
@@ -35,8 +36,8 @@ public sealed class RequestContextMiddleware(RequestDelegate _next, ILogger<Requ
 
     private static string ResolveCorrelationId(HttpContext httpContext)
     {
-        if (httpContext.Request.Headers.TryGetValue(CorrelationIDHeader, out var value) && !string.IsNullOrWhiteSpace(value))
-            return value.ToString();
+        if (httpContext.Request.Headers.TryGetValue(CorrelationIDHeader, out var values) && values.Count == 1 && IsPlain(values[0]))
+            return values[0]!;
 
         var activityId = Activity.Current?.TraceId.ToString();
         if (!string.IsNullOrEmpty(activityId))
@@ -44,4 +45,10 @@ public sealed class RequestContextMiddleware(RequestDelegate _next, ILogger<Requ
 
         return httpContext.TraceIdentifier;
     }
+
+    private static bool IsPlain(string? value) =>
+        !string.IsNullOrEmpty(value) && value.Length <= MaxCorrelationIdLength && value.All(IsAllowed);
+
+    private static bool IsAllowed(char c) =>
+        char.IsAsciiLetterOrDigit(c) || c is '-' or '_' or '.' or ':';
 }

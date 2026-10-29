@@ -107,6 +107,49 @@ public sealed class SplitSetupTests
     }
 
     [Fact]
+    public void FieldMapValidationReply_DeclaresItsReplyType()
+    {
+        var config = new Config();
+        var savedBuilder = ResponseBuilder(config);
+        var savedType = ProducesMetadataType(config);
+        try
+        {
+            config.UseFieldMapValidationReply();
+
+            ProducesMetadataType(config).Should().Be(typeof(FieldMapValidationReply));
+        }
+        finally
+        {
+            config.Errors.ProducesMetadataType = savedType;
+            config.Errors.ResponseBuilder = savedBuilder;
+        }
+    }
+
+    [Fact]
+    public void FieldMapValidationReply_KeepsItsOwnNames_UnderAnyNamingPolicy()
+    {
+        var config = new Config();
+        var savedBuilder = ResponseBuilder(config);
+        var savedType = ProducesMetadataType(config);
+        try
+        {
+            config.UseFieldMapValidationReply();
+            var reply = ResponseBuilder(config)([new ValidationFailure("Name", "first")], new DefaultHttpContext(), 400);
+
+            var unnamed = JsonSerializer.SerializeToElement(reply, new JsonSerializerOptions { PropertyNamingPolicy = null });
+            var camel = JsonSerializer.SerializeToElement(reply, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
+            PropertyNames(unnamed).Should().Equal("statusCode", "message", "errors");
+            PropertyNames(camel).Should().Equal("statusCode", "message", "errors");
+        }
+        finally
+        {
+            config.Errors.ProducesMetadataType = savedType;
+            config.Errors.ResponseBuilder = savedBuilder;
+        }
+    }
+
+    [Fact]
     public void EnumsAsText_Alone_AddsTheConverterAndLeavesTheRestUnset()
     {
         var config = new Config();
@@ -130,9 +173,11 @@ public sealed class SplitSetupTests
     private static JsonElement Build(Config config, int statusCode, params ValidationFailure[] failures)
         => JsonSerializer.SerializeToElement(ResponseBuilder(config)([.. failures], new DefaultHttpContext(), statusCode));
 
-    // The library's options expose these two only through internal getters.
+    // The library's options expose these settings through getters that are not all public.
     private static Func<List<ValidationFailure>, HttpContext, int, object> ResponseBuilder(Config config)
         => ReadInternal<Func<List<ValidationFailure>, HttpContext, int, object>>(config.Errors, "ResponseBuilder");
+
+    private static Type? ProducesMetadataType(Config config) => ReadInternal<Type?>(config.Errors, "ProducesMetadataType");
 
     private static string? RoutePrefix(Config config) => ReadInternal<string?>(config.Endpoints, "RoutePrefix");
 

@@ -17,6 +17,16 @@ ASP.NET Core plumbing shared by web services:
   `items[0].streetName`). `ValidationFailureExtensions.ToFieldMap` builds that map, and `Blocks.FastEndpoints` uses
   the same conversion, so both write the same `errors`.
 - `RequestContextMiddleware` and `RequestDiagnosticsMiddleware` — fill and log `Blocks.Core`'s `RequestContext`.
+  Add `RequestContextMiddleware` first: the diagnostics middleware reads what it fills. The diagnostics middleware
+  warns about a request slower than `RequestDiagnosticsOptions.SlowRequestMs` (default 1000), or
+  `SlowFileTransferMs` (default 3000) for an upload or a download. A streamed reply (content type
+  `text/event-stream`) is never warned about, since it stays open for as long as it streams. The block does not
+  bind the settings: unbound, the defaults apply. To change them, bind the `RequestDiagnosticsOptions` section with
+  `services.AddAndValidateOptions<RequestDiagnosticsOptions>(configuration)`; once bound, the section is required
+  and each limit must be at least 1.
+- Correlation id: a client's `X-Correlation-ID` is kept only when it is sent once, holds at most 128 characters and
+  only ASCII letters, digits, `-`, `_`, `.` and `:`. Otherwise the current trace id is used, or the server's request
+  id when no trace is running. The id lands in `RequestContext.CorrelationId` and on the reply's `X-Correlation-ID`.
 - `HttpContextProvider` — the one class that reads `HttpContext`; implements `IClaimsProvider` (its
   `TryGetUserIdText` returns the caller's id claim as written) and `IRouteProvider`.
 - `AssignUserIdFilter` — a minimal-API filter that stamps the caller's id on `IAuditableAction` (an `int` id) and
@@ -39,7 +49,9 @@ services.AddScoped<HttpContextProvider>();
 services.AddScoped<IClaimsProvider>(sp => sp.GetRequiredService<HttpContextProvider>());
 services.AddScoped<IRouteProvider>(sp => sp.GetRequiredService<HttpContextProvider>());
 services.AddScoped<RequestContext>();
+services.AddAndValidateOptions<RequestDiagnosticsOptions>(configuration); // optional: only to change the limits
 
 app.UseGlobalExceptionMiddleware();
 app.UseMiddleware<RequestContextMiddleware>();
+app.UseMiddleware<RequestDiagnosticsMiddleware>();
 ```

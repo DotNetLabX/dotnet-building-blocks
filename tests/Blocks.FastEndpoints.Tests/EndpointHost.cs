@@ -1,4 +1,5 @@
 using FastEndpoints;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -13,6 +14,8 @@ public sealed class EndpointHost : IAsyncLifetime
 {
     private WebApplication? _app;
 
+    public bool CallersConfigurationSawTheBlocksEnumSetting { get; private set; }
+
     public HttpClient CreateClient() => (_app ?? throw new InvalidOperationException("The endpoint host has not started.")).GetTestClient();
 
     public async ValueTask InitializeAsync()
@@ -22,7 +25,11 @@ public sealed class EndpointHost : IAsyncLifetime
         builder.Services.AddFastEndpoints(options => options.Assemblies = [typeof(EndpointHost).Assembly]);
 
         var app = builder.Build();
-        app.UseCustomFastEndpoints();
+        app.UseCustomFastEndpoints(config =>
+        {
+            CallersConfigurationSawTheBlocksEnumSetting = config.Serializer.Options.Converters.Any(converter => converter is JsonStringEnumConverter);
+            config.Endpoints.Configurator = endpoint => endpoint.PreProcessor<ConfiguredHeader>(Order.Before);
+        });
         await app.StartAsync(TestContext.Current.CancellationToken);
         _app = app;
     }

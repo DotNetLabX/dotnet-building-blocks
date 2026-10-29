@@ -9,13 +9,15 @@ public static class Extensions
 {
     private const string MultipleFieldsMessage = "Validation failed for multiple fields.";
 
-    public static IApplicationBuilder UseCustomFastEndpoints(this IApplicationBuilder app)
+    public static IApplicationBuilder UseCustomFastEndpoints(this IApplicationBuilder app, Action<Config>? configure = null)
     {
         app.UseFastEndpoints(c =>
         {
             c.Endpoints.RoutePrefix = "api";
+            c.Serializer.Options.PropertyNameCaseInsensitive = true;
             c.UseEnumsAsText();
             c.UseFieldMapValidationReply();
+            configure?.Invoke(c);
         });
 
         return app;
@@ -25,10 +27,11 @@ public static class Extensions
         => config.Serializer.Options.Converters.Add(new JsonStringEnumConverter());
 
     public static void UseFieldMapValidationReply(this Config config)
-        => config.Errors.ResponseBuilder = (failures, _, statusCode) => new
-        {
+    {
+        config.Errors.ResponseBuilder = (failures, _, statusCode) => new FieldMapValidationReply(
             statusCode,
-            message = failures.Count == 1 ? failures[0].ErrorMessage : MultipleFieldsMessage,
-            errors = failures.ToFieldMap(config.Serializer.Options.PropertyNamingPolicy)
-        };
+            failures.Count == 1 ? failures[0].ErrorMessage : MultipleFieldsMessage,
+            failures.ToFieldMap(config.Serializer.Options.PropertyNamingPolicy));
+        config.Errors.ProducesMetadataType = typeof(FieldMapValidationReply);
+    }
 }

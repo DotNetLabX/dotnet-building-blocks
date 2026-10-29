@@ -1,15 +1,17 @@
 # Public names that differ from the reference
 
 Every difference between the public and protected surface of the blocks as they are now (version one, then F3,
-`docs/specs/F3-GatewayFeedback`) and the reference's blocks
+`docs/specs/F3-GatewayFeedback`, then F4, `docs/specs/F4-GatewayHandover`) and the reference's blocks
 (`dotnet-microservices`, commit `fda2eb7`, `src/BuildingBlocks/Blocks.*`, built as it is on net9). Both surfaces were
 dumped with `tools/Blocks.SurfaceDump`; the reference dump is
 `docs/specs/F1-VersionOne/delivery/surface-reference.txt`. The tool prints each nullable annotation as the source
 declares it, unconstrained type parameters included (`T` versus `T?`). The comparison found 102 reference lines that
 changed or went and 108 version-one lines that changed or are new. After F3 (12 blocks, `Blocks.Grpc` added) it finds
 120 reference lines that changed or went and 181 current lines that changed or are new; F3 itself removed 24 lines
-and added 79. Each line belongs to exactly one row below; a row marked F3 names the change of the F3 spec's § What
-changes (C1–C12) and the dump lines it covers.
+and added 79. After F4 it finds 121 reference lines that changed or went and 199 current lines that changed or are
+new; F4 itself removed 2 lines and added 19. Each line belongs to exactly one row below; a row marked F3 names the
+change of the F3 spec's § What changes (C1–C12) and the dump lines it covers, and a row marked F4 names the step of
+the F4 plan and the dump lines it covers.
 
 Every public type may become internal in version two; until then every public name here is provisional.
 
@@ -24,8 +26,12 @@ Every public type may become internal in version two; until then every public na
 | added | — | `HttpContextProvider.TryGetUserIdText()` returns `string?` | F3 C2: the caller's id claim as written; 1 line |
 | added | — | static class `ValidationFailureExtensions` with `ToFieldMap(this IEnumerable<ValidationFailure>, JsonNamingPolicy?)` returning `Dictionary<string, string[]>` | F3 C7: the one field-map conversion both writers use; 2 lines |
 | added | — | static class `Blocks.AspNetCore.Middlewares.ApplicationBuilderExtensions` with `UseGlobalExceptionMiddleware(this IApplicationBuilder)` | F3 C10; 2 lines |
+| added | — | class `Blocks.AspNetCore.RequestDiagnosticsOptions`: its constructor, `SlowRequestMs` (default 1000) and `SlowFileTransferMs` (default 3000), each `int { get; init; }` | F4 step 3: the slow-request limits come from settings; 4 lines |
+| constructor changed | `RequestDiagnosticsMiddleware(RequestDelegate _next, ILogger<…> _logger, IWebHostEnvironment _env)` (version one's line) | the same with a fourth parameter, `IOptions<RequestDiagnosticsOptions> options` | F4 step 3: the middleware reads its limits from the settings; 1 line |
 
-The two middleware classes keep their constructors and `InvokeAsync`; only the namespace changed (3 lines each).
+The two middleware classes keep `InvokeAsync`, and `GlobalExceptionMiddleware` its constructor; only the namespace
+changed (3 reference lines each, the first row and the second). The diagnostics middleware's current constructor line
+is the F4 row's.
 The four gRPC types left this block for `Blocks.Grpc` (its section below).
 
 ## Blocks.Core
@@ -102,6 +108,8 @@ builds its converter for `T` itself, so EF accepts the model; before, it never b
 |---|---|---|---|
 | namespace moved | `Blocks.FastEnpoints.AssignUserIdPreProcessor` | `Blocks.FastEndpoints.AssignUserIdPreProcessor` | the misspelled namespace fixed (spec item 3) |
 | added | — | `Extensions.UseEnumsAsText(this Config)` and `Extensions.UseFieldMapValidationReply(this Config)` | F3 C8: the two halves of `UseCustomFastEndpoints`, usable alone; 2 lines |
+| signature changed | `Extensions.UseCustomFastEndpoints(this IApplicationBuilder app)` | `UseCustomFastEndpoints(this IApplicationBuilder app, Action<Config>? configure = null)` | F4 step 1: the caller's settings run last, after the block's; an optional parameter, unlike F3's overloads (F4 plan P2); 1 + 1 lines |
+| added | — | sealed record `Blocks.FastEndpoints.FieldMapValidationReply(int StatusCode, string Message, Dictionary<string, string[]> Errors)`, with the members the compiler gives a record | F4 step 1: the 400 reply's type, declared to the API document; 13 lines |
 
 ## Blocks.Grpc
 
